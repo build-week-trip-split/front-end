@@ -25,7 +25,7 @@ class Login extends React.Component {
     handleChange = e => {
         this.setState({
             credentials: {
-                ...this.state.smurf,
+                ...this.state.credentials,
                 [e.target.name]: e.target.value
             }
         })
