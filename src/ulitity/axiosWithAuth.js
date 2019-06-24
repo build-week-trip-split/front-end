@@ -7,6 +7,6 @@ export const axiosWithAuth = () => {
     headers: {
       Authorization: token
     },
-    baseURL: 'https://trip-split-buildweek.herokuapp.com'
+    baseURL: 'http://localhost:5000/api'
   });
 };
