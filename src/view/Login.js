@@ -6,7 +6,7 @@ import { logIn } from '../actions';
 class Login extends React.Component {
     state = {
         credentials: {
-            user: '',
+            username: '',
             password: ''
         }
     }
@@ -14,12 +14,13 @@ class Login extends React.Component {
     logIn = e => {
         e.preventDefault();
         this.props.logIn(this.state.credentials)
-        this.setState({
-            credentials: {
-                user: '',
-                password: ''
+        .then(res => {
+            console.log(res)
+            if(res) {
+                this.props.history.push('/home')
             }
         })
+
     }
 
     handleChange = e => {
@@ -31,6 +32,10 @@ class Login extends React.Component {
         })
     }
 
+    pushToSignUpForm = () => {
+        this.props.history.push('/signup')
+    }
+
 
     render() {
         return (
@@ -38,9 +43,9 @@ class Login extends React.Component {
                 <form onSubmit={this.logIn}>
                     <input 
                         type='text'
-                        name='user'
-                        placeholder='user'
-                        value={this.state.credentials.user}
+                        name='username'
+                        placeholder='username'
+                        value={this.state.credentials.username}
                         onChange={this.handleChange}
                     />
                     <input 
@@ -51,8 +56,8 @@ class Login extends React.Component {
                         onChange={this.handleChange}
                     />
                     <button>Log In</button>
-                    <button>Sign Up</button>
                 </form>
+                    <button onClick={this.pushToSignUpForm}>Sign Up</button>
             </div>
         )
     }
