@@ -9,10 +9,10 @@ export const logIn = credentials => dispatch => {
     console.log(credentials);
     dispatch({ type: LOGIN_START})
     return axiosWithAuth()
-        .post('https://trip-split-buildweek.herokuapp.com/oauth/token', credentials)
+        .post('/oauth/token', credentials)
         .then(res => {
             console.log(res);
-            localStorage.setItem('token', res.data.payload);
+            localStorage.setItem('token', res.data);
             dispatch({ type: LOGIN_SUCCESS })
             return true; 
         })
