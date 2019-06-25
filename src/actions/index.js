@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { axiosWithAuth } from '../ulitity/axiosWithAuth';
+// import { axiosWithAuth } from '../ulitity/axiosWithAuth';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -8,17 +8,18 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const logIn = credentials => dispatch => {
     console.log(credentials);
     dispatch({ type: LOGIN_START})
-    return axiosWithAuth()
-        .post('/login', credentials)
+    axios
+        .post('https://trip-split-buildweek.herokuapp.com/oauth/token', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {
+        headers: {
+          Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
         .then(res => {
-            console.log(res);
-            localStorage.setItem('token', res.data.payload);
-            dispatch({ type: LOGIN_SUCCESS })
-            return true; 
+          localStorage.setItem('token', res.data.access_token);
+          this.props.history.push('/users');
         })
-        .catch(err => {
-            console.log(err)
-        })
+        .catch(err => console.dir(err));
 }
 
 export const SIGN_UP_START = 'SIGN_UP_START';
