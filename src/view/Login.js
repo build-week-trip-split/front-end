@@ -14,12 +14,11 @@ class Login extends React.Component {
     logIn = e => {
         e.preventDefault();
         this.props.logIn(this.state.credentials)
-        // .then(res => {
-        //     console.log(res)
-        //     if(res) {
-        //         this.props.history.push('/home')
-        //     }
-        // })
+        .then(res => {
+            if(res) {
+                this.props.history.push('/user')
+            }
+        })
     }
 
     handleChange = e => {
