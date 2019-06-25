@@ -12,7 +12,6 @@ class AddNewTrip extends React.Component {
             endDate: '', 
             friends: [],
             numberOfPeople:'',
-            completed: true
         }
     }
 

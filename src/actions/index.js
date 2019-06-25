@@ -9,17 +9,17 @@ export const logIn = credentials => dispatch => {
     console.log(credentials);
     dispatch({ type: LOGIN_START})
     return axios
-        .post('https://trip-split-buildweek.herokuapp.com/oauth/token', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {
-        headers: {
-          Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
+    .post('https://trip-split-buildweek.herokuapp.com/oauth/token', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {
+      headers: {
+        Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+      .then(res => {
+        localStorage.setItem('token', res.data.access_token);
+        this.props.history.push('/users');
       })
-        .then(res => {
-          console.log(res)
-          localStorage.setItem('token', res.data.access_token);
-        })
-        .catch(err => console.dir(err));
+      .catch(err => console.dir(err));
 }
 
 export const SIGN_UP_START = 'SIGN_UP_START';
@@ -34,7 +34,7 @@ export const addNewUser = newUser => dispatch => {
         .then(res => {
             console.log(res);
             dispatch({ type: SIGN_UP_SUCCESS })
-            this.props.history.push('/');
+           
         })
         .catch(err => {
             console.log(err)
@@ -57,7 +57,7 @@ export const getTrips = () => dispatch => {
 }
 
 export const ADD_NEW_TRIP_START = 'ADD_NEW_TRIP_START';
-export const ADD_NEW_TRIP_SUCCESS = 'eADD_NEW_TRIP_SUCCESS';
+export const ADD_NEW_TRIP_SUCCESS = 'ADD_NEW_TRIP_SUCCESS';
 export const ADD_NEW_TRIP_FAIL = 'ADD_NEW_TRIP_FAIL';
 
 export const addNewTrip = newTrip => dispatch => {

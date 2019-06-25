@@ -20,7 +20,7 @@ class App extends React.Component {
           </div>
           <Route exact path='/' component={Login} />
           <Route path='/signup' component={SignUp} />
-          <PrivateRoute exact path='/user'component={HomeContainer} />
+          <PrivateRoute exact path='/users'component={HomeContainer} />
         </Router>
       </div>
     );

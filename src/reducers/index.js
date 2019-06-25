@@ -20,21 +20,14 @@ const initialState = {
     isSigningUp: false,
     fetchingTrips: false,
     creatingTrip: false, 
-    pastTrips: [{
-        destination: '',
-        dates: '',
-        people: [],
-        numberOfPeople: '',
-        completed: true
-    }],
-    newTrip: [{
+    trips: [{
         destination: '',
         startDate: '',
-        endDate: '', 
+        endDate: '',
         friends: [],
-        numberOfPeople:'',
-        completed: true
-    }]
+        numberOfPeople: '',
+        completed: false
+    }],
 }
 
 const reducer = (state = initialState, action) => {
@@ -111,6 +104,11 @@ const reducer = (state = initialState, action) => {
                     numberOfPeople:'',
                     completed: true
                 }]
+            }
+        case ADD_NEW_TRIP_FAIL:
+            return {
+                ...state,
+                error: 'Unable to add trip...'
             }
         default: 
             return state
