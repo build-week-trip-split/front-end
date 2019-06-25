@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import Login from './view/Login';
 import SignUp from './view/SignUp';
-import HomeContainer from './view/HomeContainer';
+import HomeContainer from './view/HomeContainer/HomeContainer';
 import PrivateRoute from './view/PrivateRoute';
 
 class App extends React.Component {
@@ -16,11 +16,11 @@ class App extends React.Component {
           <div>
             <Link to='/'></Link>
             <Link to='/signup'></Link>
-            <Link to='/home'></Link>
+            <Link to='/users'></Link>
           </div>
           <Route exact path='/' component={Login} />
           <Route path='/signup' component={SignUp} />
-          <PrivateRoute exact path='/home'component={HomeContainer} />
+          <PrivateRoute exact path='/users'component={HomeContainer} />
         </Router>
       </div>
     );

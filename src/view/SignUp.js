@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signUp } from '../actions';
+import { addNewUser } from '../actions';
 
 class SignUp extends React.Component {
     state = {
-        newUser: {
-            first_name: '',
-            last_name: '',
+        addNewUser: {
+            username: '',
+            password: '',
             email: '',
             phone_number: ''
         }
@@ -14,16 +14,16 @@ class SignUp extends React.Component {
 
     handleChange = e => {
         this.setState({
-            newUser: {
-                ...this.state.newUser,
+            addNewUser: {
+                ...this.state.addNewUser,
                 [e.target.name]: e.target.value
             }
         })
     }
 
-    signUp = e => {
+    addNewUser = e => {
         e.preventDefault();
-        this.props.signUp(this.state.newUser);
+        this.props.addNewUser(this.state.addNewUser);
     }
 
     pushToLoginForm = () => {
@@ -33,20 +33,20 @@ class SignUp extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.signUp}>
+                <form onSubmit={this.addNewUser}>
                     <input 
                         type='text'
-                        name='first_name'
-                        placeholder='first name'
-                        value={this.state.newUser.first_name}
+                        name='username'
+                        placeholder='username'
+                        value={this.state.addNewUser.username}
                         onChange={this.handleChange}
                         required
                     />
-                    <input 
-                        type='text'
-                        name='last_name'
-                        placeholder='last name'
-                        value={this.state.newUser.last_name}
+                    <input
+                        type='password'
+                        name='password'
+                        placeholder='password'
+                        value={this.state.addNewUser.password}
                         onChange={this.handleChange}
                         required
                     />
@@ -54,18 +54,18 @@ class SignUp extends React.Component {
                         type='text'
                         name='email'
                         placeholder='email'
-                        value={this.state.newUser.email}
+                        value={this.state.addNewUser.email}
                         onChange={this.handleChange}
-                        required
+                        
                     />
                     <input 
                         type='tel'
                         name='phone_number'
                         placeholder='phone number'
-                        value={this.state.newUser.phone_number}
+                        value={this.state.addNewUser.phone_number}
                         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                         onChange={this.handleChange}
-                        required
+                    
                     />
                     <small>Format: 123-456-7890</small>
                     <button>Sign Up</button>
@@ -79,9 +79,9 @@ class SignUp extends React.Component {
 const maptStateToProps = state => {
     console.log(state)
     return{
-        error: state.errorj,
+        error: state.error,
         isSigningUp: state.isSigningUp
     }
 }
 
-export default connect (maptStateToProps, { signUp })(SignUp)
+export default connect (maptStateToProps, { addNewUser })(SignUp)
