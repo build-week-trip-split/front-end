@@ -16,7 +16,7 @@ class App extends React.Component {
           <div>
             <Link to='/'></Link>
             <Link to='/signup'></Link>
-            <Link to='/user'></Link>
+            <Link to='/users'></Link>
           </div>
           <Route exact path='/' component={Login} />
           <Route path='/signup' component={SignUp} />

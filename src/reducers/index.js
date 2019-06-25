@@ -6,9 +6,9 @@ import {
     SIGN_UP_START,
     SIGN_UP_SUCCESS,
     SIGN_UP_FAIL, 
-    FETCH_PAST_TRIPS_START,
-    FETCH_PAST_TRIPS_SUCCESS,
-    FETCH_PAST_TRIPS_FAIL,
+    FETCH_TRIPS_START,
+    FETCH_TRIPS_SUCCESS,
+    FETCH_TRIPS_FAIL,
     ADD_NEW_TRIP_START,
     ADD_NEW_TRIP_SUCCESS,
     ADD_NEW_TRIP_FAIL
@@ -65,24 +65,24 @@ const reducer = (state = initialState, action) => {
                 isSigningUp: false,
                 error: 'Unable to sign up'
             }
-        case FETCH_PAST_TRIPS_START: 
+        case FETCH_TRIPS_START: 
             return {
                 ...state,
                 fetchingTrips: true,
             }
-        case FETCH_PAST_TRIPS_SUCCESS:
+        case FETCH_TRIPS_SUCCESS:
             return {
                 ...state,
                 fetchingTrips: false,
                 pastTrips: [{
                     destination: action.payload,
                     dates: action.payload,
-                    people: action.payload,
+                    friends: action.payload,
                     numberOfPeople: action.paylod,
                     completed: true
                 }]
             }
-        case FETCH_PAST_TRIPS_FAIL:
+        case FETCH_TRIPS_FAIL:
             return {
                 ...state,
                 error: 'Unable to view trips at this time...'
@@ -102,7 +102,7 @@ const reducer = (state = initialState, action) => {
                     endDate: '', 
                     friends: [],
                     numberOfPeople:'',
-                    completed: true
+                    completed: false
                 }]
             }
         case ADD_NEW_TRIP_FAIL:

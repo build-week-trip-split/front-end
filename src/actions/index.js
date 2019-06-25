@@ -17,7 +17,6 @@ export const logIn = credentials => dispatch => {
     })
       .then(res => {
         localStorage.setItem('token', res.data.access_token);
-        this.props.history.push('/users');
       })
       .catch(err => console.dir(err));
 }
@@ -41,17 +40,17 @@ export const addNewUser = newUser => dispatch => {
         })
 }
 
-export const FETCH_PAST_TRIPS_START = 'FETCH_CURRENT_TRIPS_START';
-export const FETCH_PAST_TRIPS_SUCCESS = 'FETCH_CURRENT_TRIPS_SUCCESS';
-export const FETCH_PAST_TRIPS_FAIL = 'FETCH_CURRENT_TRIPS_FAIL';
+export const FETCH_TRIPS_START = 'FETCH_TRIPS_START';
+export const FETCH_TRIPS_SUCCESS = 'FETCH_TRIPS_SUCCESS';
+export const FETCH_TRIPS_FAIL = 'FETCH_TRIPS_FAIL';
 
 export const getTrips = () => dispatch => {
-    dispatch ({ type: FETCH_PAST_TRIPS_START });
+    dispatch ({ type: FETCH_TRIPS_START });
     return axiosWithAuth()
       .get('trips/trips')
       .then(res => {
         console.log(res)
-        dispatch({ type: FETCH_PAST_TRIPS_SUCCESS, payload: res.data })
+        dispatch({ type: FETCH_TRIPS_SUCCESS, payload: res.data })
       })
       .catch(err => console.log(err))
 }
