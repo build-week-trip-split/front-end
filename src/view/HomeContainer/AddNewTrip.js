@@ -1,8 +1,5 @@
 import React from 'react';
 
-import { connect } from 'react-redux'; 
-
-import { addNewTrip } from '../../actions';
 
 class AddNewTrip extends React.Component {
     state = {
@@ -68,16 +65,6 @@ class AddNewTrip extends React.Component {
     }
 }
 
-const maptStateToProps = state => {
-    console.log(state);
-    return {
-        destination: state.destination,
-        startDate: state.startDate,
-        endDate: state.endDate, 
-        friends: state.friends,
-        numberOfPeople: state.numberOfPeople,
-        completed: state.completed
-    }
-}
 
-export default connect (maptStateToProps, { addNewTrip})(AddNewTrip); 
+
+export default AddNewTrip; 

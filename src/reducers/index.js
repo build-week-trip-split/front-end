@@ -13,7 +13,10 @@ import {
     ADD_NEW_TRIP_FAIL,
     DELETE_TRIP_START,
     DELETE_TRIP_SUCCESS,
-    DELETE_TRIP_FAIL
+    DELETE_TRIP_FAIL,
+    UPDATE_TRIP_START,
+    UPDATE_TRIP_SUCCESS,
+    UPDATE_TRIP_FAIL
 } from '../actions';
 
 const initialState = {
@@ -23,7 +26,8 @@ const initialState = {
     fetchingTrips: false,
     creatingTrip: false, 
     trips: [],
-    deletingTrip: false
+    deletingTrip: false,
+    updatingTrip: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -111,6 +115,22 @@ const reducer = (state = initialState, action) => {
                         return true; 
                     }
                 })
+            }
+        case DELETE_TRIP_FAIL: 
+            return {
+                ...state,
+                deletingTrip: false,
+                error: 'Unable to delete..'
+            }
+        case UPDATE_TRIP_START:
+            return {
+                ...state,
+                updatingTrip: true,
+            }
+        case UPDATE_TRIP_SUCCESS:
+            return {
+                ...state,
+                trips: action.payload
             }
         default: 
             return state
