@@ -129,6 +129,22 @@ export const updateTrip = tripid => dispatch => {
       console.log(res);
       dispatch({ type: UPDATE_TRIP_SUCCESS, payload: res.data });
     })
-    .catch(err => console.log(err));
-};
+    .catch(err => console.log(err))
+}
 
+
+export const FETCH_BILLS_START = 'GET_BILL_START';
+export const FETCH_BILLS_SUCCESS = 'GET_BILL_SUCCESS';
+export const FETCH_BILLS_FAIL = 'GET_BILL_FAIL';
+
+export const getBills = () => dispatch => {
+  dispatch ({ type: FETCH_BILLS_START });
+  return axiosWithAuth()
+    .get('/bills/bills')
+    .then(res => {
+      console.log(res);
+      dispatch ({ type: FETCH_BILLS_SUCCESS })
+    })
+    .catch(err => console.log(err))
+
+}

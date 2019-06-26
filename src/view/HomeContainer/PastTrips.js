@@ -1,22 +1,20 @@
-import React from 'react';
+import React from "react";
 
+const PastTrip = props => {
+  console.log(props);
+  const PastTrips = props.trips.map(trip => {
+    return (
+      <div key={trip.tripid}>
+        {trip.completed ? <p>{trip.tripname}</p> : null}
+      </div>
+    );
+  });
 
-const PastTrips = props => {
-    console.log(props)
-        return (
-            <div>
-            {/* {props.trips.completed === false ?  */}
-            {props.trips.map(trip => {
-                return (
-                    <div key={trip.tripid}>
-                        <p>{trip.startDate}</p>
-                        <p>{trip.endDate}</p>
-                        <p>{trip.tripname}</p>
-                    </div>
-                )
-            })}
-            </div>   
-           )
-}
+  return (
+    <div>
+      <div>{PastTrips}</div>
+    </div>
+  );
+};
 
-export default PastTrips; 
+export default PastTrip;

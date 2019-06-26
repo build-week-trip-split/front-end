@@ -1,18 +1,20 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import CurrentTrip from './CurrentTrip';
-import PastTrips from './PastTrips';
-import AddNewTrip from './AddNewTrip';
-import Navbar from './Navbar';
+import CurrentTrip from "./CurrentTrip";
+import PastTrips from "./PastTrips";
+import AddNewTrip from "./AddNewTrip";
+import Navbar from "./Navbar";
+import BillContainaer from "./BillContainer";
 
 import {
   getTrips,
   deleteTrip,
   addNewTrip,
   updateTrip,
-  fetchTrip
-} from '../../actions';
+  fetchTrip,
+  getBills
+} from "../../actions";
 
 class HomeContainer extends React.Component {
   componentDidMount() {
@@ -21,9 +23,9 @@ class HomeContainer extends React.Component {
 
   logout = e => {
     e.preventDefault();
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    this.props.history.push('/');
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    this.props.history.push("/");
   };
 
   render() {
@@ -47,6 +49,10 @@ class HomeContainer extends React.Component {
             getTrips={this.props.getTrips}
           />
           <Navbar />
+          <BillContainaer
+            getBills={this.props.getBills}
+            bills={this.props.bills}
+          />
         </div>
       </div>
     );
@@ -58,12 +64,13 @@ const maptStateToProps = state => {
   return {
     error: state.error,
     fetchingTrips: state.fetchingTrips,
-    trips: state.trips
+    trips: state.trips,
+    bills: state.bills,
+    fetchingBills: false
   };
 };
 
 export default connect(
   maptStateToProps,
-  { getTrips, deleteTrip, addNewTrip, updateTrip, fetchTrip }
+  { getTrips, deleteTrip, addNewTrip, updateTrip, fetchTrip, getBills }
 )(HomeContainer);
-

@@ -1,39 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import Trip from './Trip';
-
-import { Route, Link, withRouter } from 'react-router-dom';
+import { Route, Link, withRouter } from "react-router-dom";
 
 const CurrentTrip = props => {
   console.log(props);
-  const TripList = props.trips.map(trip => {
+  const CurrentTrips = props.trips.map(trip => {
     return (
       <div key={trip.tripid}>
-        <Link to={`/users/${trip.tripid}`}>
-          <p>{trip.tripname}</p>
-        </Link>
+        {trip.completed  === false ? (
+          <Link to={`/users/${trip.tripid}`}>
+            <p>{trip.tripname}</p>
+          </Link>
+        ) : null}
       </div>
     );
   });
 
   return (
     <div>
-      <div>{TripList}</div>
-      <Route
-        path="/users/:tripid"
-        render={props => (
-          <Trip
-            {...props}
-            trip={props.trips}
-            updateTrip={props.updateTrip}
-            deleteTrip={props.deleteTrip}
-            fetchTrip={props.fetchTrip}
-          />
-        )}
-      />
+      <div>{CurrentTrips}</div>
     </div>
   );
 };
 
-export default withRouter(CurrentTrip);
-
+export default CurrentTrip;
