@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 import CurrentTrip from './CurrentTrip';
 import PastTrips from './PastTrips';
@@ -14,8 +13,6 @@ import {
   updateTrip,
   fetchTrip
 } from '../../actions';
-
-const TripWithrouter = withRouter(CurrentTrip);
 
 class HomeContainer extends React.Component {
   componentDidMount() {
@@ -38,7 +35,7 @@ class HomeContainer extends React.Component {
         </div>
         <button onClick={this.logout}>Log Out</button>
         <div>
-          <TripWithrouter
+          <CurrentTrip
             trips={this.props.trips}
             deleteTrip={this.props.deleteTrip}
             updateTrip={this.props.updateTrip}
@@ -69,3 +66,4 @@ export default connect(
   maptStateToProps,
   { getTrips, deleteTrip, addNewTrip, updateTrip, fetchTrip }
 )(HomeContainer);
+
