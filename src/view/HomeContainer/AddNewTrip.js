@@ -1,8 +1,6 @@
 import React from 'react';
 
 
-
-
 class AddNewTrip extends React.Component {
     state = {
         newTrip: {
@@ -17,6 +15,13 @@ class AddNewTrip extends React.Component {
         this.props.addNewTrip(this.state.newTrip)
         .then(() => {
             this.props.getTrips()
+        })
+        this.setState({
+            newTrip: {
+                tripname: '',
+                startDate: '',
+                endDate: ''
+            }
         })
     }
 

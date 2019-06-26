@@ -9,9 +9,7 @@ import BillContainaer from "./BillContainer";
 
 import {
   getTrips,
-  deleteTrip,
   addNewTrip,
-  updateTrip,
   fetchTrip,
   getBills
 } from "../../actions";
@@ -72,5 +70,5 @@ const maptStateToProps = state => {
 
 export default connect(
   maptStateToProps,
-  { getTrips, deleteTrip, addNewTrip, updateTrip, fetchTrip, getBills }
+  { getTrips, addNewTrip, fetchTrip, getBills }
 )(HomeContainer);

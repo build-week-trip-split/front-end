@@ -1,13 +1,13 @@
 import React from "react";
 
-import { Route, Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CurrentTrip = props => {
   console.log(props);
   const CurrentTrips = props.trips.map(trip => {
     return (
       <div key={trip.tripid}>
-        {trip.completed  === false ? (
+        {trip.completed  ===  false ? (
           <Link to={`/users/${trip.tripid}`}>
             <p>{trip.tripname}</p>
           </Link>

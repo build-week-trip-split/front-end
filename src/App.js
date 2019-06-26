@@ -17,9 +17,9 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <div>
-            <Link to='/'>Home</Link>
+            <Link to='/'>Sign In</Link>
             <Link to='/signup'>Sign Up</Link>
-            <Link to='/users'>User</Link>
+            <Link to='/users'>Home</Link>
           </div>
           <Route exact path='/' component={Login} />
           <Route path='/signup' component={SignUp} />

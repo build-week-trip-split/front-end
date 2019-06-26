@@ -112,6 +112,7 @@ export const deleteTrip = tripid => dispatch => {
     .then(res => {
       console.log(res);
       dispatch({ type: DELETE_TRIP_SUCCESS, payload: tripid });
+      
     })
     .catch(err => console.log(err));
 };
@@ -120,11 +121,11 @@ export const UPDATE_TRIP_START = 'UPDATE_TRIP_START';
 export const UPDATE_TRIP_SUCCESS = 'UPDATE_TRIP_SUCCESS';
 export const UPDATE_TRIP_FAIL = 'UPDATE_TRIP_FAIL';
 
-export const updateTrip = tripid => dispatch => {
-  console.log(tripid);
+export const updateTrip = (tripid, updateTrip ) => dispatch => {
+  console.log(tripid, updateTrip);
   dispatch({ type: UPDATE_TRIP_START });
   return axiosWithAuth()
-    .put(`/trips/trip/${tripid}`)
+    .put(`/trips/trip/${tripid}`, updateTrip)
     .then(res => {
       console.log(res);
       dispatch({ type: UPDATE_TRIP_SUCCESS, payload: res.data });
