@@ -120,31 +120,45 @@ export const UPDATE_TRIP_START = 'UPDATE_TRIP_START';
 export const UPDATE_TRIP_SUCCESS = 'UPDATE_TRIP_SUCCESS';
 export const UPDATE_TRIP_FAIL = 'UPDATE_TRIP_FAIL';
 
-export const updateTrip = tripid => dispatch => {
+export const updateTrip = (tripid, updatedTrip) => dispatch => {
   console.log(tripid);
   dispatch({ type: UPDATE_TRIP_START });
   return axiosWithAuth()
-    .put(`/trips/trip/${tripid}`)
+    .put(`/trips/trip/${tripid}`, updatedTrip)
     .then(res => {
       console.log(res);
       dispatch({ type: UPDATE_TRIP_SUCCESS, payload: res.data });
     })
-    .catch(err => console.log(err))
-}
-
+    .catch(err => console.log(err));
+};
 
 export const FETCH_BILLS_START = 'GET_BILL_START';
 export const FETCH_BILLS_SUCCESS = 'GET_BILL_SUCCESS';
 export const FETCH_BILLS_FAIL = 'GET_BILL_FAIL';
 
 export const getBills = () => dispatch => {
-  dispatch ({ type: FETCH_BILLS_START });
+  dispatch({ type: FETCH_BILLS_START });
   return axiosWithAuth()
     .get('/bills/bills')
     .then(res => {
       console.log(res);
-      dispatch ({ type: FETCH_BILLS_SUCCESS })
+      dispatch({ type: FETCH_BILLS_SUCCESS });
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
+};
 
-}
+// Might use this if an endpoint is created for it
+export const END_TRIP_START = 'END_TRIP_START';
+export const END_TRIP_SUCCESS = 'END_TRIP_SUCCESS';
+export const END_TRIP_FAIL = 'END_TRIP_FAIL';
+
+export const endTrip = tripid => dispatch => {
+  dispatch({ type: END_TRIP_START });
+  return axiosWithAuth()
+    .put(`/trips/trip/completed/${tripid}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: END_TRIP_SUCCESS });
+    })
+    .catch(err => console.log(err));
+};
