@@ -66,3 +66,4 @@ export default connect(
   maptStateToProps,
   { getTrips, deleteTrip, addNewTrip, updateTrip, fetchTrip }
 )(HomeContainer);
+
