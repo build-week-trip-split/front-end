@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchTrip, deleteTrip, updateTrip } from "../../actions";
+import { fetchTrip, deleteTrip, updateTrip, addBill, getBills } from "../../actions";
 
+import BillForm from '../HomeContainer/BillForm';
 
 class Trip extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Trip extends React.Component {
             tripname: '',
             startDate: '',
             endDate: '', 
-        }
+        },
     }
   }
   componentDidMount() {
@@ -105,6 +106,7 @@ class Trip extends React.Component {
             <button onClick={e => this.updateFormState(e)}>Update Trip</button>
         
         <button onClick={() => this.deleteTrip(trip.tripid)}>Delete</button>
+        <BillForm addBill={this.props.addBill} tripid={trip.tripid} getBills={this.props.getBills}/> 
       </div>
     );
   }
@@ -117,5 +119,5 @@ const maptStateToProps = state => ({
 
 export default connect(
   maptStateToProps,
-  { fetchTrip, deleteTrip, updateTrip }
+  { fetchTrip, deleteTrip, updateTrip, addBill, getBills }
 )(Trip);

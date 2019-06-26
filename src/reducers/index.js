@@ -23,6 +23,9 @@ import {
     FETCH_BILLS_START,
     FETCH_BILLS_SUCCESS,
     FETCH_BILLS_FAIL,
+    ADD_BILL_START,
+    ADD_BILL_SUCCESS,
+    ADD_BILL_FAIL
 } from '../actions';
 
 const initialState = {
@@ -36,6 +39,7 @@ const initialState = {
     deletingTrip: false,
     updatingTrip: false,
     bills: [],
+    creatingBill: false,
     fetchingBills: false,
     trip: null
 }
@@ -177,6 +181,21 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 error:'Unable to fetch bills...'
+            }
+        case ADD_BILL_START: 
+        return {
+            ...state,
+            creatingBill: true
+            }
+        case ADD_BILL_SUCCESS: 
+            return {
+                ...state,
+                creatingBill: false,
+            }
+        case ADD_BILL_FAIL:
+            return {
+                ...state,
+                error: 'Unable to add bill...'
             }
         default: 
             return state

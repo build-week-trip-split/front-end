@@ -37,7 +37,7 @@ class AddNewTrip extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.addNewTrip}>
+                <form onSubmit={(e) => this.addNewTrip(e)}>
                     <input 
                         type='text'
                         name='tripname'

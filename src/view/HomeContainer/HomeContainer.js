@@ -5,7 +5,7 @@ import CurrentTrip from "./CurrentTrip";
 import PastTrips from "./PastTrips";
 import AddNewTrip from "./AddNewTrip";
 import Navbar from "./Navbar";
-import BillContainaer from "./BillContainer";
+
 
 import {
   getTrips,
@@ -47,10 +47,6 @@ class HomeContainer extends React.Component {
             getTrips={this.props.getTrips}
           />
           <Navbar />
-          <BillContainaer
-            getBills={this.props.getBills}
-            bills={this.props.bills}
-          />
         </div>
       </div>
     );
