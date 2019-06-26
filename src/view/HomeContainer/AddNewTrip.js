@@ -1,23 +1,23 @@
 import React from 'react';
 
-import { connect } from 'react-redux'; 
 
-import { addNewTrip } from '../../actions';
+
 
 class AddNewTrip extends React.Component {
     state = {
         newTrip: {
-            destination: '',
+            tripname: '',
             startDate: '',
             endDate: '', 
-            friends: [],
-            numberOfPeople:'',
         }
     }
 
     addNewTrip = e => {
         e.preventDefault();
         this.props.addNewTrip(this.state.newTrip)
+        .then(() => {
+            this.props.getTrips()
+        })
     }
 
     handleChange = e => {
@@ -35,9 +35,9 @@ class AddNewTrip extends React.Component {
                 <form onSubmit={this.addNewTrip}>
                     <input 
                         type='text'
-                        name='destination'
-                        placeholder='destination'
-                        value={this.state.newTrip.destination}
+                        name='tripname'
+                        placeholder='tripname'
+                        value={this.state.newTrip.tripname}
                         onChange={this.handleChange}
                     />
                     <input 
@@ -54,13 +54,6 @@ class AddNewTrip extends React.Component {
                         value={this.state.newTrip.endDate}
                         onChange={this.handleChange}
                     />
-                    <input 
-                        type='text'
-                        name='friends'
-                        placeholder='add friends'
-                        value={this.state.newTrip.friends}
-                        onChange={this.handleChange}
-                    />
                 <button>Add</button>
                 </form>
 
@@ -69,16 +62,6 @@ class AddNewTrip extends React.Component {
     }
 }
 
-const maptStateToProps = state => {
-    console.log(state);
-    return {
-        destination: state.destination,
-        startDate: state.startDate,
-        endDate: state.endDate, 
-        friends: state.friends,
-        numberOfPeople: state.numberOfPeople,
-        completed: state.completed
-    }
-}
 
-export default connect (maptStateToProps, { addNewTrip})(AddNewTrip); 
+
+export default AddNewTrip; 

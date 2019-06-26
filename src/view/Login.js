@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { logIn } from '../actions';
 
+
 class Login extends React.Component {
     state = {
         credentials: {
@@ -14,6 +15,9 @@ class Login extends React.Component {
     logIn = e => {
         e.preventDefault();
         this.props.logIn(this.state.credentials)
+        .then(() => {
+            this.props.history.push('/users')
+        })
     }
 
     handleChange = e => {
@@ -28,7 +32,6 @@ class Login extends React.Component {
     pushToSignUpForm = () => {
         this.props.history.push('/signup')
     }
-
 
     render() {
         return (
