@@ -59,6 +59,21 @@ export const getTrips = () => dispatch => {
       .catch(err => console.log(err))
 }
 
+export const FETCH_SINGLE_TRIP_START = 'FETCH_SINGLE_TRIP_START';
+export const FETCH_SINGLE_TRIP_SUCCESS = 'FETCH_SINGLE_TRIP_SUCCESS';
+export const FETCH_SINGLE_TRIP_FAIL = 'FETCH_SINGLE_TRIP_FAIL';
+
+export const fetchTrip = tripid => dispatch => {
+  console.log(tripid)
+    console.log(tripid);
+    dispatch ({ type: FETCH_SINGLE_TRIP_START })
+    .then(res => {
+      console.log(res)
+      dispatch({ type: FETCH_SINGLE_TRIP_SUCCESS, payload: res.data })
+    })
+    .catch(err => console.log(err))
+}
+
 export const ADD_NEW_TRIP_START = 'ADD_NEW_TRIP_START';
 export const ADD_NEW_TRIP_SUCCESS = 'ADD_NEW_TRIP_SUCCESS';
 export const ADD_NEW_TRIP_FAIL = 'ADD_NEW_TRIP_FAIL';

@@ -16,7 +16,10 @@ import {
     DELETE_TRIP_FAIL,
     UPDATE_TRIP_START,
     UPDATE_TRIP_SUCCESS,
-    UPDATE_TRIP_FAIL
+    UPDATE_TRIP_FAIL,
+    FETCH_SINGLE_TRIP_START,
+    FETCH_SINGLE_TRIP_SUCCESS,
+    FETCH_SINGLE_TRIP_FAIL
 } from '../actions';
 
 const initialState = {
@@ -24,6 +27,7 @@ const initialState = {
     isLoggingIn: false,
     isSigningUp: false,
     fetchingTrips: false,
+    fetchingTrip: false,
     creatingTrip: false, 
     trips: [],
     deletingTrip: false,
@@ -81,6 +85,22 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: 'Unable to view trips at this time...'
             }
+        case FETCH_SINGLE_TRIP_START:
+            return {
+                ...state,
+                fetchingTrip: true,
+            }
+        case FETCH_SINGLE_TRIP_SUCCESS:
+            return {
+                ...state,
+                fetchingTrip: false,
+                trips: action.payload
+            }
+        case FETCH_SINGLE_TRIP_FAIL:
+            return {
+                ...state,
+                error: 'Unable to load trip'
+            }
         case ADD_NEW_TRIP_START: 
             return {
                 ...state,
@@ -131,6 +151,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 trips: action.payload
+            }
+        case UPDATE_TRIP_FAIL:
+            return {
+                ...state,
+                error: 'Unable to update trip...'
             }
         default: 
             return state

@@ -6,7 +6,7 @@ import PastTrips from './PastTrips';
 import AddNewTrip from './AddNewTrip';
 import Navbar from './Navbar'; 
 
-import { getTrips, deleteTrip, addNewTrip, updateTrip } from '../../actions';
+import { getTrips, deleteTrip, addNewTrip, updateTrip, fetchTrip } from '../../actions';
 
 class HomeContainer extends React.Component {
 
@@ -30,7 +30,7 @@ class HomeContainer extends React.Component {
                 </div>
                 <button onClick={this.logout}>Log Out</button>
                 <div>
-                    <CurrentTrip trips={this.props.trips} deleteTrip={this.props.deleteTrip} updateTrip={this.props.updateTrip}/>
+                    <CurrentTrip trips={this.props.trips} deleteTrip={this.props.deleteTrip} updateTrip={this.props.updateTrip} fetchTrip={this.props.fetchTrip}/>
                     <PastTrips trips={this.props.trips}/>
                     <AddNewTrip addNewTrip={this.props.addNewTrip}/>
                     <Navbar />
@@ -50,5 +50,5 @@ const maptStateToProps = state => {
     }
 }
 
-export default connect (maptStateToProps, { getTrips, deleteTrip, addNewTrip, updateTrip })(HomeContainer);
+export default connect (maptStateToProps, { getTrips, deleteTrip, addNewTrip, updateTrip, fetchTrip })(HomeContainer);
 

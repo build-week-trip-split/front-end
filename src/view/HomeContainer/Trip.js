@@ -1,13 +1,18 @@
 import React from 'react';
 
+class Trip extends React.Component {
+    constructor(props){
+        console.log(props)
+        super()
+        this.state={
 
-const Trip = props => {
-    console.log(props)
-    return(
-        <div>
+        }
+    }
+    componentDidMount() {
+        const id = this.props.match.params.tripid;
+        this.props.fetchTrip(id)
+    }
 
-        </div>
-    )
 }
 
 export default Trip; 
