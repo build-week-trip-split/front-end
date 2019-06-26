@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Route, Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CurrentTrip = props => {
   console.log(props);
