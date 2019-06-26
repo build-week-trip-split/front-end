@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTrip } from '../../actions';
+import EndTripButton from './EndTripButton';
 
 class Trip extends React.Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class Trip extends React.Component {
             .map(b => [b.billTitle, b.billAmount].join(': '))
             .join(',')}
         </div>
+        <EndTripButton trip={trip} />
       </div>
     );
   }
