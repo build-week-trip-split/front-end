@@ -29,7 +29,7 @@ export const SIGN_UP_FAIL = 'SIGN_UP_FAIL';
 export const addNewUser = newUser => dispatch => {
     console.log(newUser);
     dispatch({ type: SIGN_UP_START })
-    axios  
+    return axios  
         .post('https://trip-split-buildweek.herokuapp.com/createnewuser', `grant_type=password&username=${newUser.username}&password=${newUser.password}`, {
         })
         .then(res => {

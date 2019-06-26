@@ -110,7 +110,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 creatingTrip: false,
-                trips: action.payload
             }
         case ADD_NEW_TRIP_FAIL:
             return {

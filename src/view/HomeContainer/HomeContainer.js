@@ -32,7 +32,7 @@ class HomeContainer extends React.Component {
                 <div>
                     <CurrentTrip trips={this.props.trips} deleteTrip={this.props.deleteTrip} updateTrip={this.props.updateTrip} fetchTrip={this.props.fetchTrip}/>
                     <PastTrips trips={this.props.trips}/>
-                    <AddNewTrip addNewTrip={this.props.addNewTrip}/>
+                    <AddNewTrip addNewTrip={this.props.addNewTrip} getTrips={this.props.getTrips}/>
                     <Navbar />
                 </div>
             </div>

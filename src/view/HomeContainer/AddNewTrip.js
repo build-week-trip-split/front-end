@@ -1,19 +1,23 @@
 import React from 'react';
 
 
+
+
 class AddNewTrip extends React.Component {
     state = {
         newTrip: {
             tripname: '',
             startDate: '',
             endDate: '', 
-            users: [],
         }
     }
 
     addNewTrip = e => {
         e.preventDefault();
         this.props.addNewTrip(this.state.newTrip)
+        .then(() => {
+            this.props.getTrips()
+        })
     }
 
     handleChange = e => {
@@ -48,13 +52,6 @@ class AddNewTrip extends React.Component {
                         name='endDate'
                         placeholder='end date'
                         value={this.state.newTrip.endDate}
-                        onChange={this.handleChange}
-                    />
-                    <input 
-                        type='text'
-                        name='users'
-                        placeholder='add friends'
-                        value={this.state.newTrip.users}
                         onChange={this.handleChange}
                     />
                 <button>Add</button>

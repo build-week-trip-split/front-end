@@ -13,6 +13,14 @@ class Trip extends React.Component {
         this.props.fetchTrip(id)
     }
 
+    render(){
+        return(
+            <div>
+                trips
+            </div>
+        )
+    }
+
 }
 
 export default Trip; 
