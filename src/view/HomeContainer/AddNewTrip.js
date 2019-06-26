@@ -7,11 +7,10 @@ import { addNewTrip } from '../../actions';
 class AddNewTrip extends React.Component {
     state = {
         newTrip: {
-            destination: '',
+            tripname: '',
             startDate: '',
             endDate: '', 
-            friends: [],
-            numberOfPeople:'',
+            users: [],
         }
     }
 
@@ -35,9 +34,9 @@ class AddNewTrip extends React.Component {
                 <form onSubmit={this.addNewTrip}>
                     <input 
                         type='text'
-                        name='destination'
-                        placeholder='destination'
-                        value={this.state.newTrip.destination}
+                        name='tripname'
+                        placeholder='tripname'
+                        value={this.state.newTrip.tripname}
                         onChange={this.handleChange}
                     />
                     <input 
@@ -56,9 +55,9 @@ class AddNewTrip extends React.Component {
                     />
                     <input 
                         type='text'
-                        name='friends'
+                        name='users'
                         placeholder='add friends'
-                        value={this.state.newTrip.friends}
+                        value={this.state.newTrip.users}
                         onChange={this.handleChange}
                     />
                 <button>Add</button>

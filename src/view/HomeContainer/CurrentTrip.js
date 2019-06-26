@@ -1,9 +1,21 @@
 import React from 'react';
 
-const CurrentTrip = () => {
+const CurrentTrip = props => {
     return (
         <div>
-            CurrentTrip
+            {/* {props.trips.completed ?  */}
+            {props.trips.map(trip => {
+            
+                return (
+                    <div key={trip.tripid}>
+                        <p>{trip.startDate}</p>
+                        <p>{trip.endDate}</p>
+                        <p>{trip.tripname}</p>
+                        <button>Update</button>
+                        <button onClick={() => props.deleteTrip(trip.tripid)}>Delete</button>
+                    </div>
+                )
+            })}
         </div>
     )
 }

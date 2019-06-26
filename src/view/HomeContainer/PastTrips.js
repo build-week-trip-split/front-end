@@ -1,29 +1,22 @@
 import React from 'react';
 
-import { getTrips } from '../../actions';
-import { connect } from 'react-redux';
 
-class PastTrips extends React.Component {
-
-    componentDidMount() {
-        this.props.getTrips() 
-    }
-
-    render() {
+const PastTrips = props => {
+    console.log(props)
         return (
             <div>
-                PastTrip
+            {/* {props.trips.completed === false ?  */}
+            {props.trips.map(trip => {
+                return (
+                    <div key={trip.tripid}>
+                        <p>{trip.startDate}</p>
+                        <p>{trip.endDate}</p>
+                        <p>{trip.tripname}</p>
+                    </div>
+                )
+            })}
             </div>   
            )
-    }
 }
 
-const mapStateToProps = state => {
-    return {
-        error: state.error,
-        fetchingTrips: state.fetchingTrips,
-        pastTrips: state.pastTrips
-    }
-}
-
-export default connect(mapStateToProps, { getTrips })(PastTrips)
+export default PastTrips; 
