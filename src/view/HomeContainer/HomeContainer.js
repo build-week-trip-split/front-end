@@ -5,8 +5,10 @@ import CurrentTrip from './CurrentTrip';
 import PastTrips from './PastTrips';
 import AddNewTrip from './AddNewTrip';
 import Navbar from './Navbar'; 
+import BillContainaer from './BillContainer';
 
-import { getTrips, deleteTrip, addNewTrip, updateTrip, fetchTrip } from '../../actions';
+import { getTrips, deleteTrip, addNewTrip, updateTrip, fetchTrip, getBills } from '../../actions';
+
 
 class HomeContainer extends React.Component {
 
@@ -32,8 +34,9 @@ class HomeContainer extends React.Component {
                 <div>
                     <CurrentTrip trips={this.props.trips} deleteTrip={this.props.deleteTrip} updateTrip={this.props.updateTrip} fetchTrip={this.props.fetchTrip}/>
                     <PastTrips trips={this.props.trips}/>
-                    <AddNewTrip addNewTrip={this.props.addNewTrip} getTrips={this.props.getTrips}/>
+                    <AddNewTrip addNewTrip={this.props.addNewTrip} getTrips={this.props.getTrips} />
                     <Navbar />
+                    <BillContainaer getBills={this.props.getBills} bills={this.props.bills}/>
                 </div>
             </div>
         )
@@ -45,10 +48,12 @@ const maptStateToProps = state => {
     return {
         error: state.error,
         fetchingTrips: state.fetchingTrips,
-        trips: state.trips
+        trips: state.trips,
+        bills: state.bills,
+        fetchingBills: false, 
         
     }
 }
 
-export default connect (maptStateToProps, { getTrips, deleteTrip, addNewTrip, updateTrip, fetchTrip })(HomeContainer);
+export default connect (maptStateToProps, { getTrips, deleteTrip, addNewTrip, updateTrip, fetchTrip, getBills })(HomeContainer);
 

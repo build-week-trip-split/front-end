@@ -19,7 +19,10 @@ import {
     UPDATE_TRIP_FAIL,
     FETCH_SINGLE_TRIP_START,
     FETCH_SINGLE_TRIP_SUCCESS,
-    FETCH_SINGLE_TRIP_FAIL
+    FETCH_SINGLE_TRIP_FAIL,
+    FETCH_BILLS_START,
+    FETCH_BILLS_SUCCESS,
+    FETCH_BILLS_FAIL,
 } from '../actions';
 
 const initialState = {
@@ -32,6 +35,8 @@ const initialState = {
     trips: [],
     deletingTrip: false,
     updatingTrip: false,
+    bills: [],
+    fetchingBills: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -155,6 +160,22 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: 'Unable to update trip...'
+            }
+        case FETCH_BILLS_START:
+            return {
+                ...state,
+                fetchingBills: true,
+            }
+        case FETCH_BILLS_SUCCESS:
+            return {
+                ...state,
+                fetchingBills: false,
+                bills: action.payload
+            }
+        case FETCH_BILLS_FAIL:
+            return {
+                ...state,
+                error:'Unable to fetch bills...'
             }
         default: 
             return state

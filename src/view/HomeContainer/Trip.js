@@ -8,10 +8,10 @@ class Trip extends React.Component {
 
         }
     }
-    componentDidMount() {
-        const id = this.props.match.params.tripid;
-        this.props.fetchTrip(id)
-    }
+    // componentDidMount() {
+    //     const id = this.props.match.params.tripid;
+    //     this.props.fetchTrip(id)
+    // }
 
     render(){
         return(
