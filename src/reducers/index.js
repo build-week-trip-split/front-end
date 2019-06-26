@@ -36,7 +36,8 @@ const initialState = {
     deletingTrip: false,
     updatingTrip: false,
     bills: [],
-    fetchingBills: false
+    fetchingBills: false,
+    trip: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -99,7 +100,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 fetchingTrip: false,
-                trips: action.payload
+                trip: action.payload
             }
         case FETCH_SINGLE_TRIP_FAIL:
             return {
@@ -182,4 +183,5 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export default reducer; 
+export default reducer;
+
