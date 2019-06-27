@@ -65,7 +65,7 @@ class AddNewTrip extends React.Component {
                 required
               />
             </div>
-            <button>Add</button>
+            <button className='login-button'>Add</button>
         </form>
       </div>
     );

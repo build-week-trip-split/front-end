@@ -33,7 +33,7 @@ class BillForm extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={e => this.addBill(e, this.props.tripid)}>
+        <form onSubmit={e => this.addBill(e, this.props.tripid)} className='form'>
           <input
             type="text"
             name="billTitle"

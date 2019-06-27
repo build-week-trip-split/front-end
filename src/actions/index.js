@@ -52,9 +52,10 @@ export const FETCH_TRIPS_FAIL = "FETCH_TRIPS_FAIL";
 export const GET_USERNAME_SUCCESS = "GET_USERNAME_SUCCESS";
 
 export const getTrips = () => dispatch => {
+  const username = localStorage.getItem("username");
   dispatch({ type: FETCH_TRIPS_START });
   return axiosWithAuth()
-    .get("/trips/trips")
+    .get(`/trips/trips/${username}`)
     .then(res => {
       console.log(res);
       dispatch({ type: FETCH_TRIPS_SUCCESS, payload: res.data });
@@ -131,10 +132,10 @@ export const FETCH_BILLS_START = "GET_BILL_START";
 export const FETCH_BILLS_SUCCESS = "GET_BILL_SUCCESS";
 export const FETCH_BILLS_FAIL = "GET_BILL_FAIL";
 
-export const getBills = () => dispatch => {
+export const getBills = tripid => dispatch => {
   dispatch({ type: FETCH_BILLS_START });
   return axiosWithAuth()
-    .get("/bills/bills")
+    .get(`/bills/bills/${tripid}`)
     .then(res => {
       console.log(res);
       dispatch({ type: FETCH_BILLS_SUCCESS });

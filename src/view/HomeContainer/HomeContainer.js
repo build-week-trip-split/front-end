@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import CurrentTrip from "./CurrentTrip";
 import PastTrips from "./PastTrips";
 import AddNewTrip from "./AddNewTrip";
+import Name from './Name';
 
 import { getTrips, addNewTrip, fetchTrip, getBills } from "../../actions";
 
@@ -25,7 +26,7 @@ class HomeContainer extends React.Component {
       <div className="user-profile">
         <div className='name'>
           <img src="" alt="" />
-          <h2>John Smith</h2>
+         <Name />
         </div>
         <div className='current-trip'>
           <CurrentTrip
