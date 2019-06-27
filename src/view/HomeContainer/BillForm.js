@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 class BillForm extends React.Component {
   state = {
     newBill: {
-      billTitle: "",
-      billAmount: ""
+      billTitle: '',
+      billAmount: ''
     }
   };
 
@@ -18,14 +18,18 @@ class BillForm extends React.Component {
   };
 
   addBill = (e, tripid) => {
+    const { onComplete } = this.props;
     e.preventDefault();
-    this.props.addBill(tripid, this.state.newBill).then(() => {
-      this.props.getBills();
-    });
+    this.props
+      .addBill(tripid, this.state.newBill)
+      .then(() => {
+        this.props.getBills();
+      })
+      .then(() => onComplete && onComplete(this.props.tripid));
     this.setState({
       newBill: {
-        billTitle: "",
-        billAmount: ""
+        billTitle: '',
+        billAmount: ''
       }
     });
   };
@@ -33,7 +37,10 @@ class BillForm extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={e => this.addBill(e, this.props.tripid)} className='form'>
+        <form
+          onSubmit={e => this.addBill(e, this.props.tripid)}
+          className="form"
+        >
           <input
             type="text"
             name="billTitle"
