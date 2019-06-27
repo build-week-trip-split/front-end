@@ -3,42 +3,36 @@ import React from "react";
 class TripFrom extends React.Component {
   state = {
     updateTrip: {
-        tripname: '',
-        startDate: '',
-        endDate: '', 
+      tripname: "",
+      startDate: "",
+      endDate: ""
     }
+  };
+
+  componentDidMount() {
+    this.props.getBills();
   }
   updateTrip = (e, updateTrip) => {
     e.preventDefault();
-    this.props.updateTrip(updateTrip)
-    // this.props.history.push('/')
-}
+    const tripid = localStorage.getItem("tripid");
+    this.props.updateTrip(tripid, updateTrip).then(() => {
+      this.props.history.push(`/users/${tripid}`);
+    });
+    localStorage.removeItem("tripid");
+  };
 
-updateFormState = (e, tripBeingUpdate) => {
-    e.preventDefault();
+  handleChange = e => {
     this.setState({
-        updateTrip: {
-            tripname: this.props.trip.tripname,
-            startDate: this.props.trip.startDate,
-            endDate: this.props.trip.endDate
-        }
-    })
-}   
-
-handleChange = e => {
-    this.setState({
-        updateTrip: {
-            ...this.state.updateTrip,
-            [e.target.name]: e.target.value
-        }
-    })
-}
+      updateTrip: {
+        ...this.state.updateTrip,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
   render() {
     return (
       <div>
-        <form
-          onSubmit={e => this.updateTrip(e, this.state.updateTrip)}
-        >
+        <form onSubmit={e => this.updateTrip(e, this.state.updateTrip)}>
           <input
             type="text"
             name="tripname"
@@ -67,4 +61,4 @@ handleChange = e => {
   }
 }
 
-export default TripFrom; 
+export default TripFrom;

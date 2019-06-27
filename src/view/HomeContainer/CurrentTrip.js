@@ -7,7 +7,7 @@ const CurrentTrip = props => {
   const CurrentTrips = props.trips.map(trip => {
     return (
       <div key={trip.tripid}>
-        {trip.completed  ===  false ? (
+        {trip.completed === false ? (
           <Link to={`/users/${trip.tripid}`}>
             <p>{trip.tripname}</p>
           </Link>

@@ -1,17 +1,16 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-import { BrowserRouter as Router, Route, Link, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addBill, getBills, updateTrip,  } from './actions';
+import { addBill, getBills, updateTrip } from "./actions";
 
-import Trip from './view/HomeContainer/Trip';
-import TripForm from './view/HomeContainer/TripForm';
-import BillForm from './view/HomeContainer/BillForm';
-import Login from './view/Login';
-import SignUp from './view/SignUp';
-import HomeContainer from './view/HomeContainer/HomeContainer';
-import PrivateRoute from './view/PrivateRoute';
+import Trip from "./view/HomeContainer/Trip";
+import TripForm from "./view/HomeContainer/TripForm";
+import Login from "./view/Login";
+import SignUp from "./view/SignUp";
+import HomeContainer from "./view/HomeContainer/HomeContainer";
+import PrivateRoute from "./view/PrivateRoute";
 
 class App extends React.Component {
   render() {
@@ -19,22 +18,33 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <div>
-            <Link to='/'>Sign In</Link>
-            <Link to='/signup'>Sign Up</Link>
-            <Link to='/users'>Home</Link>
+            <Link to="/">Sign In</Link>
+            <Link to="/signup">Sign Up</Link>
+            <Link to="/users">Home</Link>
           </div>
-          <Route exact path='/' component={Login} />
-          <Route path='/signup' component={SignUp} />
-          <Route exact path="/users/:tripid" render={props => <Trip {...props} />} />
-          <Route path="/users/:tripid/bills" render={props => <BillForm {...props} addBill={this.props.addBill}  getBills={this.props.getBills}/>} />
-          <Route path='/users/:tripid/trip' render={props => <TripForm {...props} updateTrip={this.props.updateTrip} />} />
-          <PrivateRoute exact path='/users'component={HomeContainer} />
+          <Route exact path="/" component={Login} />
+          <Route path="/signup" component={SignUp} />
+          <Route
+            exact
+            path="/users/:tripid"
+            render={props => <Trip {...props} />}
+          />
+          <Route
+            path="/users/:tripid/trip"
+            render={props => (
+              <TripForm
+                {...props}
+                updateTrip={this.props.updateTrip}
+                getBills={this.props.getBills}
+              />
+            )}
+          />
+          <PrivateRoute exact path="/users" component={HomeContainer} />
         </Router>
       </div>
     );
   }
 }
-
 
 const maptStateToProps = state => {
   console.log(state);
@@ -51,4 +61,3 @@ export default connect(
   maptStateToProps,
   { addBill, updateTrip, getBills }
 )(App);
-

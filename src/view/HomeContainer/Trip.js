@@ -1,30 +1,38 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchTrip, deleteTrip, updateTrip, addBill, getBills, addUserToTrip } from "../../actions";
+import {
+  fetchTrip,
+  deleteTrip,
+  updateTrip,
+  addBill,
+  getBills,
+  addUserToTrip,
+  deleteBill,
+  deleteUser
+} from "../../actions";
 
-import BillForm from '../HomeContainer/BillForm';
-import EndTripButton from './EndTripButton';
-
+import BillForm from "../HomeContainer/BillForm";
+import EndTripButton from "./EndTripButton";
 
 class Trip extends React.Component {
   constructor(props) {
     console.log(props);
     super();
-    this.state ={
-        newBill: {
-            billTitle: '',
-            billAmount: null,
-        },
-        addUser: {
-          username: ''
-        }
-    }
+    this.state = {
+      newBill: {
+        billTitle: "",
+        billAmount: ""
+      },
+      addUser: {
+        username: ""
+      }
+    };
   }
   componentDidMount() {
     const id = this.props.match.params.tripid;
     this.props.fetchTrip(id);
   }
-  
+
   handleAddUserChange = e => {
     this.setState({
       addUser: {
@@ -32,47 +40,46 @@ class Trip extends React.Component {
         [e.target.name]: e.target.value
       }
     });
-  }
+  };
 
   addBill = (e, tripid) => {
     e.preventDefault();
-    this.props.addBill(tripid, this.state.newBill)
-    .then(() => {
-        this.props.fetchTrip(tripid)
-    })
+    this.props.addBill(tripid, this.state.newBill).then(() => {
+      this.props.fetchTrip(this.props.trip.tripid);
+    });
     this.setState({
-        newBill: {
-            billTitle: '',
-            billAmount: null,
-        }
-    })
-}
+      newBill: {
+        billTitle: "",
+        billAmount: ""
+      }
+    });
+  };
+
+  deleteBill = billid => {
+    this.props.deleteBill(billid).then(() => {
+      this.props.fetchTrip(this.props.trip.tripid);
+    });
+  };
 
   handleChange = e => {
     this.setState({
-        updateTrip: {
-            ...this.state.newBill,
-            [e.target.name]: e.target.value
-        }
-    })
-  }
+      updateTrip: {
+        ...this.state.newBill,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
 
   deleteTrip = tripid => {
-    this.props.deleteTrip(tripid)
-    .then(() => {
+    this.props.deleteTrip(tripid).then(() => {
       this.props.history.push("/users");
     });
   };
 
-
   pushToTripForm = () => {
-    this.props.history.push(`/users/${this.props.tripid}/trip`)
-  }
-
-  pushToBillForm = () => {
-    this.props.history.push(`/users/${this.props.tripid}/bills`)
-  }
-
+    this.props.history.push(`/users/${this.props.trip.tripid}/trip`);
+    localStorage.setItem("tripid", this.props.trip.tripid);
+  };
 
   render() {
     const { trip } = this.props;
@@ -89,7 +96,8 @@ class Trip extends React.Component {
 
     // if we have more than 0 trip users, divide the tripTotal by that number
     // otherwise 0
-    const totalPerUser = trip.users.length > 0 ? tripTotal / trip.users.length : 0
+    const totalPerUser =
+      trip.users.length > 0 ? tripTotal / trip.users.length : 0;
 
     return (
       <div>
@@ -100,51 +108,59 @@ class Trip extends React.Component {
         <div>endDate: {trip.endDate}</div>
         <div>madeByWhom: {trip.madeByWhom}</div>
         <div>tripname: {trip.tripname}</div>
-        <div>users: {trip.users.map(u => u.username).join(", ")}</div>
+        {/* <div>users: {trip.users.map(u => u.username)}</div> */}
+        <div>
+          users:{" "}
+          {trip.users.map(u => {
+            return (
+              <div key={u.userid}>
+                <small>{u.username}</small>
+                <button
+                  onClick={() =>
+                    this.props.deleteUser(u.userid).then(() => {
+                      this.props.fetchTrip(trip.tripid);
+                    })
+                  }
+                >
+                  x
+                </button>
+              </div>
+            );
+          })}
+        </div>
         <div>
           bills:{" "}
+          {trip.bills.map(bill => {
+            console.log(bill);
+            return (
+              <div key={bill.billid}>
+                <small>{bill.billTitle}</small>
+                <small>{bill.billAmount}</small>
+                <button onClick={() => this.deleteBill(bill.billid)}>x</button>
+              </div>
+            );
+          })}
+          {/* bills:{" "}
           {trip.bills
             .map(b => [b.billTitle, b.billAmount].join(": "))
-            .join(",")}
+            .join(",")
+            } */}
         </div>
         <div>Trip Total: {tripTotal}</div>
         <div>Owed Per User: {totalPerUser}</div>
 
-        <form onSubmit={() => this.updateTrip(trip.tripid, this.state.updateTrip)}>
-                    <input 
-                        type='text'
-                        name='billTitle'
-                        placeholder='bill'
-                        value={this.state.newBill.billTitle}
-                        onChange={this.handleChange}
-                    />  
-                    <input 
-                        type='number'
-                        name='billAmount'
-                        placeholder='amount'
-                        value={this.state.newBill.billAmount}
-                        onChange={this.handleChange}
-                    />
-                    <input 
-                        type='date'
-                        name='endDate'
-                        placeholder='end date'
-                        value={this.state.updateTrip.endDate}
-                        onChange={this.handleChange}
-                    />
-                <button>Update</button>
-            </form>
-            <button onClick={e => this.updateFormState(e)}>Update Trip</button>
-            <button onClick={() => this.deleteTrip(trip.tripid)}>Delete</button>
-            <button onClick={this.pushToTripForm}>Edit Trip</button>
-            <button onClick={this.pushToBillForm}>Edit Bills</button>
-        <button onClick={() => this.deleteTrip(trip.tripid)}>Delete</button>
-        <BillForm addBill={this.props.addBill} tripid={trip.tripid} getBills={this.props.getBills}/> 
+        <button onClick={this.pushToTripForm}>Edit Trip</button>
+
+        <BillForm
+          addBill={this.props.addBill}
+          tripid={trip.tripid}
+          getBills={this.props.getBills}
+        />
 
         <form
           onSubmit={e => {
             e.preventDefault();
-            this.setState({ addUser: { username: '' } });
+            this.setState({ addUser: { username: "" } });
             this.props
               .addUserToTrip(trip.tripid, this.state.addUser.username)
               .then(() => {
@@ -162,7 +178,8 @@ class Trip extends React.Component {
           />
           <button type="submit">Add User</button>
         </form>
-        <EndTripButton trip={trip} />
+        <button onClick={() => this.deleteTrip(trip.tripid)}>Delete</button>
+        <EndTripButton trip={trip} history={this.props.history} />
       </div>
     );
   }
@@ -170,11 +187,21 @@ class Trip extends React.Component {
 
 const maptStateToProps = state => ({
   trip: state.trip,
+  users: state.trip,
   fetchingTrip: state.fetchingTrip,
   addingUserToTrip: state.addingUserToTrip
 });
 
 export default connect(
   maptStateToProps,
-  { fetchTrip, deleteTrip, updateTrip, addBill, getBills, addUserToTrip }
+  {
+    fetchTrip,
+    deleteTrip,
+    updateTrip,
+    addBill,
+    getBills,
+    addUserToTrip,
+    deleteBill,
+    deleteUser
+  }
 )(Trip);
