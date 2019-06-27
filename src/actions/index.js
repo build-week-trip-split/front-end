@@ -112,7 +112,7 @@ export const deleteTrip = tripid => dispatch => {
     .then(res => {
       console.log(res);
       dispatch({ type: DELETE_TRIP_SUCCESS, payload: tripid });
-      
+
     })
     .catch(err => console.log(err));
 };
@@ -180,8 +180,6 @@ export const addBill = (tripid, newBill) => dispatch => {
     })
     .catch(err => console.log(err))
 }
-    .catch(err => console.log(err));
-};
 
 export const ADD_USER_TO_TRIP_START = 'ADD_USER_TO_TRIP_START';
 export const ADD_USER_TO_TRIP_SUCCESS = 'ADD_USER_TO_TRIP_SUCCESS';
