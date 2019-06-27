@@ -4,8 +4,8 @@ import React from 'react';
 class BillForm extends React.Component {
     state ={
         newBill: {
-            billTitle: 'meat',
-            billAmount: 10
+            billTitle: '',
+            billAmount: null
         }
     }
  
@@ -39,14 +39,14 @@ class BillForm extends React.Component {
                 <form onSubmit={(e) => this.addBill(e, this.props.tripid)}>
                     <input 
                         type='text'
-                        name='bill'
+                        name='billTitle'
                         placeholder='bill'
                         value={this.state.newBill.billTitle}
                         onChange={this.handleChange}
                     />  
                     <input 
                         type='number'
-                        name='bill amount'
+                        name='billAmount'
                         placeholder='amount'
                         value={this.state.newBill.billAmount}
                         onChange={this.handleChange}

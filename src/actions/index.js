@@ -139,7 +139,6 @@ export const FETCH_BILLS_SUCCESS = 'GET_BILL_SUCCESS';
 export const FETCH_BILLS_FAIL = 'GET_BILL_FAIL';
 
 export const getBills = () => dispatch => {
-  console.log('ehh')
   dispatch ({ type: FETCH_BILLS_START });
   return axiosWithAuth()
     .get('/bills/bills')
