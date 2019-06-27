@@ -8,6 +8,7 @@ import { endTrip } from "../../actions";
 const EndTripButton = ({ trip, endTrip, onComplete, history }) => {
   return (
     <button
+      className='button gray'
       onClick={() => {
         endTrip(trip.tripid).then(() => {
           onComplete && onComplete(trip);

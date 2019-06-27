@@ -101,41 +101,43 @@ class Trip extends React.Component {
 
     return (
       <div>
-        <div>tripid: {trip.tripid}</div>
-        <div>completed: {trip.completed ? "True" : "False"}</div>
-        <div>endDate: {trip.endDate}</div>
-        <div>startDate: {trip.startDate}</div>
-        <div>endDate: {trip.endDate}</div>
-        <div>madeByWhom: {trip.madeByWhom}</div>
-        <div>tripname: {trip.tripname}</div>
-        {/* <div>users: {trip.users.map(u => u.username)}</div> */}
-        <div>
-          users:{" "}
-          {trip.users.map(u => {
-            return (
-              <div key={u.userid}>
-                <small>{u.username}</small>
-                <button
-                  onClick={() =>
-                    this.props.deleteUser(u.userid).then(() => {
-                      this.props.fetchTrip(trip.tripid);
-                    })
-                  }
-                >
-                  x
-                </button>
-              </div>
-            );
-          })}
+        {/* <div><p>tripid: {trip.tripid}</p></div> */}
+        {/* <div><p>completed: {trip.completed ? "True" : "False"}</p></div> */}
+        <div className='trip-container'>
+          <h3>{trip.tripname}</h3>
+          <p>Start Date: {trip.startDate}</p>
+          <p>End Date: {trip.endDate}</p>
+          <p>Trip Total: ${tripTotal}</p>
+          <p>Owed Per User: {totalPerUser}</p>
+          {/* <div><p>madeByWhom: {trip.madeByWhom}</p></div> */}
+          {/* <div>users: {trip.users.map(u => u.username)}</div> */}
+            <div className='users-container'>
+              <p>Friends:</p>
+              {trip.users.map(u => {
+                return (
+                  <div key={u.userid} className='user'>
+                    <p>{u.username}</p>
+                    <button
+                      onClick={() =>
+                        this.props.deleteUser(u.userid).then(() => {
+                          this.props.fetchTrip(trip.tripid);
+                        })
+                      }
+                    >
+                      x
+                    </button>
+                  </div>
+              );
+            })}
+            </div>
         </div>
-        <div>
-          bills:{" "}
+        <div className='bill-container'>
+          <p>Bills:</p>
           {trip.bills.map(bill => {
-            console.log(bill);
             return (
-              <div key={bill.billid}>
-                <small>{bill.billTitle}</small>
-                <small>{bill.billAmount}</small>
+              <div key={bill.billid} className='bill'>
+                <p>{bill.billTitle}</p>
+                <p>: ${bill.billAmount}</p>
                 <button onClick={() => this.deleteBill(bill.billid)}>x</button>
               </div>
             );
@@ -146,40 +148,40 @@ class Trip extends React.Component {
             .join(",")
             } */}
         </div>
-        <div>Trip Total: {tripTotal}</div>
-        <div>Owed Per User: {totalPerUser}</div>
-
-        <button onClick={this.pushToTripForm}>Edit Trip</button>
-
-        <BillForm
-          addBill={this.props.addBill}
-          tripid={trip.tripid}
-          getBills={this.props.getBills}
-        />
-
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            this.setState({ addUser: { username: "" } });
-            this.props
-              .addUserToTrip(trip.tripid, this.state.addUser.username)
-              .then(() => {
-                this.props.fetchTrip(trip.tripid);
-              });
-          }}
-        >
-          <input
-            type="text"
-            name="username"
-            placeholder="username"
-            value={this.state.addUser.username}
-            onChange={this.handleAddUserChange}
-            autoComplete="off"
+        <div className='bottom-container'>
+          <BillForm
+            addBill={this.props.addBill}
+            tripid={trip.tripid}
+            getBills={this.props.getBills}
           />
-          <button type="submit">Add User</button>
-        </form>
-        <button onClick={() => this.deleteTrip(trip.tripid)}>Delete</button>
-        <EndTripButton trip={trip} history={this.props.history} />
+
+          <form className='form'
+            onSubmit={e => {
+              e.preventDefault();
+              this.setState({ addUser: { username: "" } });
+              this.props
+                .addUserToTrip(trip.tripid, this.state.addUser.username)
+                .then(() => {
+                  this.props.fetchTrip(trip.tripid);
+                });
+            }}
+          >
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              value={this.state.addUser.username}
+              onChange={this.handleAddUserChange}
+              autoComplete="off"
+            />
+            <button type="submit">Add Friend</button>
+          </form>
+          <div className='button-container'>
+            <button onClick={() => this.deleteTrip(trip.tripid)}className='button red'>Delete</button>
+            <EndTripButton trip={trip} history={this.props.history} />
+            <button onClick={this.pushToTripForm}className='button'>Edit Trip</button>
+          </div>
+        </div>
       </div>
     );
   }

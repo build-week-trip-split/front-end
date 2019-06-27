@@ -1,0 +1,276 @@
+.App {
+    max-width: 500px; 
+    max-height: 800px; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+
+.login-conatiner {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center;
+    margin-top: 75px;
+    
+    h4 {
+        margin-bottom: 50px; 
+    }
+
+    img {
+        margin-bottom: 20px;
+        width: 175px; 
+         
+    }
+
+    form{
+        
+        input {
+            width: 175px; 
+        }
+       
+        .login-button {
+            margin-top: 20px;
+            margin-bottom: 10px;  
+            background-color: #9858DB;
+            width: 125px;
+            height: 40px; 
+            border-radius: 10px; 
+            
+            p {
+                color: white
+            }
+        }
+
+    }
+    .signup-button {
+        width: 125px;
+        height: 40px; 
+        border-radius: 10px; 
+        p {
+            margin-right: 5px;
+            color: white;  
+        }
+    }
+
+}
+
+.navbar {
+    display: flex; 
+    margin-top: 10px; 
+
+    p {
+        margin-right: 10px;
+        
+        :hover {
+            text-decoration: underline; 
+        }
+    }
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: column; 
+    text-align: center;
+
+    .name {
+        margin-top: 30px;
+    
+    }
+    
+    .current-trip {
+        margin-top: 50px;
+    }
+
+    .past-trip {
+        margin-top: 50px; 
+    }
+
+    .add-trip-form {
+        margin-top: 50px;
+        display: flex; 
+    }
+    
+    .logout-button {
+        margin-top: 50px; 
+    }
+    
+    footer {
+        margin-top: 10px; 
+        small{
+            margin-right: 10px; 
+        }
+    }
+}
+
+.trips {
+    margin-top: 10px; 
+    border-radius: 10px;
+    margin-left: 50px;   
+    width: 80%; 
+    border: 2px solid black;
+    background-color: #9858DB;
+    color: white; 
+    padding: 5px;
+
+    :hover {
+      text-decoration: underline
+    }
+}
+
+.past {
+    background-color: darken(#9858DB, 30%);
+}
+
+.trip-form {
+    display: flex;
+    flex-direction: column;
+    
+    input {
+        border: 1px solid lightgray; 
+        border-radius: 10px; 
+        width: 60%;  
+        margin-top: 10px; 
+    }
+
+    button{
+        margin-top: 20px;
+        margin-bottom: 10px;  
+        background-color: #9858DB;
+        width: 80px;
+        height: 30px; 
+        border-radius: 10px; 
+        color: white; 
+    }
+}
+
+.trip-container {
+    margin-top: 30px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+   h3 {
+       margin-bottom: 15px; 
+   }
+   
+   p {
+       margin-top: 5px; 
+   }
+}
+
+
+.bottom-container {
+    margin-left: 25px; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+}
+
+.users-container {
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    display: flex;
+
+    .user {
+        display: flex;
+        margin-top: 10px; 
+        border-radius: 10px;
+        width: 100px; 
+        border: 2px solid black;
+        background-color: #9858DB;
+        color: white; 
+        padding: 3px;
+ 
+        p {
+            margin-left: 5px; 
+            font-size: 1.5rem; 
+        }
+
+        button {
+            margin-left: 15px;
+        }
+    }
+
+}
+    .bill-container {
+        margin-top: 10px; 
+        margin-bottom: 30px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        display: flex;
+
+        .bill {
+            display: flex;
+            margin-top: 10px; 
+            border-radius: 10px;
+            width: 40%;
+            border: 2px solid black;
+            background-color: #9858DB;
+            color: white; 
+            padding: 3px;
+     
+            
+            p {
+                margin-left: 5px;
+                font-size: 1.5rem;  
+            }
+
+            button {
+                margin-left: 15px;
+            }
+        }
+
+    }
+
+    form {
+        // display: fle
+        input {
+            border: 1px solid lightgray; 
+            border-radius: 10px; 
+            width: 30%; 
+            height: 25px;  
+            margin-top: 10px;
+            margin-left: 5px;  
+            margin-right: 5px; 
+        }
+
+        button{
+            margin-top: 20px;
+            margin-bottom: 10px;  
+            background-color: #9858DB;
+            width: 80px;
+            height: 30px; 
+            border-radius: 10px; 
+            color: white;  
+        }
+    }
+
+.button-container {
+    
+    margin-right: 30px; 
+
+    .button {
+        margin-top: 20px;
+        margin-bottom: 10px;  
+        background-color: #9858DB;
+        width: 80px;
+        height: 30px; 
+        border-radius: 10px; 
+        color: white; 
+        margin-right: 5px; 
+
+    }
+
+    .red {
+        background-color: rgb(223, 12, 12); 
+    }
+    .gray {
+        background-color: gray;
+    }
+}
