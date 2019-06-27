@@ -6,10 +6,11 @@ const PastTrip = props => {
   console.log(props);
   const PastTrips = props.trips.map(trip => {
     return (
-      <div key={trip.tripid}>
+      <div key={trip.tripid} className='trips past'>
         {trip.completed ? (
           <Link to={`/users/${trip.tripid}`}>
             <p>{trip.tripname}</p>
+            <small>{trip.startDate} - {trip.endDate}</small>
           </Link>
         ) : null}
       </div>
@@ -18,6 +19,7 @@ const PastTrip = props => {
 
   return (
     <div>
+      <h4>Past Trips</h4>
       <div>{PastTrips}</div>
     </div>
   );

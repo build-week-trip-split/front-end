@@ -59,9 +59,9 @@ class Login extends React.Component {
                 />
               </div>
             </div>
-            <button className='login-button flex-shrink-0 hover:border-white-700 text-md py-2 px-4 rounded'><h5>Log In</h5></button>
+            <button className='login-button flex-shrink-0 hover:border-white-700 text-md py-2 px-4 rounded'><p>Log In</p></button>
         </form>
-        <button onClick={this.pushToSignUpForm} className='signup-button bg-gray-600 flex-shrink-0 hover:border-white-700 text-md py-2 px-4 rounded'><h5>Sign Up</h5></button>
+        <button onClick={this.pushToSignUpForm} className='signup-button bg-gray-600 flex-shrink-0 hover:border-white-700 text-md py-2 px-4 rounded'><p>Sign Up</p></button>
       </div>
     );
   }

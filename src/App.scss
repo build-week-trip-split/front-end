@@ -35,8 +35,9 @@
             margin-bottom: 10px;  
             background-color: #9858DB;
             width: 125px;
+            border-radius: 10px; 
             
-            h5 {
+            p {
                 color: white
             }
         }
@@ -44,7 +45,8 @@
     }
     .signup-button {
         width: 125px;
-        h5 {
+        border-radius: 10px; 
+        p {
             margin-right: 5px;
             color: white;  
         }
@@ -62,5 +64,72 @@
         :hover {
             text-decoration: underline; 
         }
+    }
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: column; 
+    text-align: center;
+
+    .name {
+        margin-top: 30px;
+        
+        h2 {
+            text-decoration: underline;
+        }
+    }
+    
+    .current-trip {
+        margin-top: 50px;
+    }
+
+    .past-trip {
+        margin-top: 50px; 
+    }
+
+    .add-trip-form {
+        margin-top: 50px;
+        display: flex; 
+    }
+    
+    .logout-button {
+        margin-top: 50px; 
+    }
+    
+    footer {
+        margin-top: 10px; 
+        small{
+            margin-right: 10px; 
+        }
+    }
+}
+
+.trips {
+    margin-top: 10px; 
+    border-radius: 10px;
+    margin-left: 50px;   
+    width: 80%; 
+    border: 2px solid black;
+    background-color: #9858DB;
+    color: white; 
+    padding: 5px;
+
+    :hover {
+      text-decoration: underline
+    }
+}
+
+.past {
+    background-color: darken(#9858DB, 30%);
+}
+
+.trip-form {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    
+    .add-trip {
+        width: 80%; 
     }
 }

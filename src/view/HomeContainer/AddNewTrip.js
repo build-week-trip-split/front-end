@@ -34,30 +34,38 @@ class AddNewTrip extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="trip-form">
         <form onSubmit={e => this.addNewTrip(e)}>
-          <input
-            type="text"
-            name="tripname"
-            placeholder="tripname"
-            value={this.state.newTrip.tripname}
-            onChange={this.handleChange}
-          />
-          <input
-            type="date"
-            name="startDate"
-            placeholder="start date"
-            value={this.state.newTrip.startDate}
-            onChange={this.handleChange}
-          />
-          <input
-            type="date"
-            name="endDate"
-            placeholder="end date"
-            value={this.state.newTrip.endDate}
-            onChange={this.handleChange}
-          />
-          <button>Add</button>
+          <div>
+              <input
+                className='add-trip appearance-none bg-transparent border-none w-full text-gray-700 py-5 px-8 leading-tight focus:outline-none'
+                type="text"
+                name="tripname"
+                placeholder="tripname"
+                value={this.state.newTrip.tripname}
+                onChange={this.handleChange}
+                required
+              />
+              <input
+                className='add-trip appearance-none bg-transparent border-none w-full text-gray-700 py-5 px-8 leading-tight focus:outline-none'
+                type="date"
+                name="startDate"
+                placeholder="start date"
+                value={this.state.newTrip.startDate}
+                onChange={this.handleChange}
+                required
+              />
+              <input
+                className='add-trip appearance-none bg-transparent border-none w-full text-gray-700 py-5 px-8 leading-tight focus:outline-none'
+                type="date"
+                name="endDate"
+                placeholder="end date"
+                value={this.state.newTrip.endDate}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+            <button>Add</button>
         </form>
       </div>
     );

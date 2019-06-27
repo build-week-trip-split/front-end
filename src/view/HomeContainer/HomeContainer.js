@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import CurrentTrip from "./CurrentTrip";
 import PastTrips from "./PastTrips";
@@ -21,25 +22,40 @@ class HomeContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="user-profile">
+      <div className="user-profile">
+        <div className='name'>
           <img src="" alt="" />
-          <h2>Joe Doe</h2>
+          <h2>John Smith</h2>
         </div>
-        <button onClick={this.logout}>Log Out</button>
-        <div>
+        <div className='current-trip'>
           <CurrentTrip
             trips={this.props.trips}
             deleteTrip={this.props.deleteTrip}
             updateTrip={this.props.updateTrip}
             fetchTrip={this.props.fetchTrip}
           />
-          <PastTrips trips={this.props.trips} />
-          <AddNewTrip
-            addNewTrip={this.props.addNewTrip}
-            getTrips={this.props.getTrips}
-          />
         </div>
+        <div className='past-trip'>
+          <PastTrips trips={this.props.trips} />
+        </div>
+        <div className='add-trip-form'>
+          <AddNewTrip
+              addNewTrip={this.props.addNewTrip}
+              getTrips={this.props.getTrips}
+            />
+        </div>
+        <button className='logout-button'onClick={this.logout}>Log Out</button>
+        <footer>
+            <small>
+              <Link to="/users">Home</Link>
+            </small>
+            <small>
+              <Link to="/">Sign In</Link>
+            </small> 
+            <small>
+              <Link to="/signup">Sign Up</Link>
+            </small>
+        </footer>
       </div>
     );
   }
