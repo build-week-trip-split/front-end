@@ -34,6 +34,16 @@ class Trip extends React.Component {
       return <div>Loading...</div>;
     }
 
+    // sum up all the billAmounts
+    const tripTotal = trip.bills.reduce(
+      (accu, cur) => accu + cur.billAmount,
+      0
+    );
+
+    // if we have more than 0 trip users, divide the tripTotal by that number
+    // otherwise 0
+    const totalPerUser = trip.users.length > 0 ? tripTotal / trip.users.length : 0
+
     return (
       <div>
         <div>tripid: {trip.tripid}</div>
@@ -50,6 +60,8 @@ class Trip extends React.Component {
             .map(b => [b.billTitle, b.billAmount].join(': '))
             .join(',')}
         </div>
+        <div>Trip Total: {tripTotal}</div>
+        <div>Owed Per User: {totalPerUser}</div>
         <form
           onSubmit={e => {
             e.preventDefault();
@@ -87,4 +99,3 @@ export default connect(
   maptStateToProps,
   { fetchTrip, addUserToTrip }
 )(Trip);
-
