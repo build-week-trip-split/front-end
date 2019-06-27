@@ -1,9 +1,9 @@
-import React from 'react';
+// import React from 'react';
 
-const TripDetails = () => {
-    return(
-        <div>hello</div>
-    )
-}
+// const TripDetails = () => {
+//     return(
+//         <div>hello</div>
+//     )
+// }
 
-export default TripDetails; 
+// export default TripDetails; 

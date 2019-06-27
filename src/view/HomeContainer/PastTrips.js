@@ -1,11 +1,17 @@
 import React from "react";
 
+import { Link } from 'react-router-dom';
+
 const PastTrip = props => {
   console.log(props);
   const PastTrips = props.trips.map(trip => {
     return (
       <div key={trip.tripid}>
-        {trip.completed ? <p>{trip.tripname}</p> : null}
+        {trip.completed ? 
+         <Link to={`/users/${trip.tripid}`}>
+         <p>{trip.tripname}</p>
+        </Link>
+        : null}
       </div>
     );
   });

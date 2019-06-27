@@ -112,6 +112,7 @@ export const deleteTrip = tripid => dispatch => {
     .then(res => {
       console.log(res);
       dispatch({ type: DELETE_TRIP_SUCCESS, payload: tripid });
+
     })
     .catch(err => console.log(err));
 };
@@ -120,11 +121,12 @@ export const UPDATE_TRIP_START = 'UPDATE_TRIP_START';
 export const UPDATE_TRIP_SUCCESS = 'UPDATE_TRIP_SUCCESS';
 export const UPDATE_TRIP_FAIL = 'UPDATE_TRIP_FAIL';
 
-export const updateTrip = (tripid, updatedTrip) => dispatch => {
-  console.log(tripid);
+export const updateTrip = (tripid, updateTrip ) => dispatch => {
+  console.log(tripid, updateTrip);
   dispatch({ type: UPDATE_TRIP_START });
   return axiosWithAuth()
-    .put(`/trips/trip/${tripid}`, updatedTrip)
+    .put(`/trips/trip/${tripid}`, updateTrip)
+
     .then(res => {
       console.log(res);
       dispatch({ type: UPDATE_TRIP_SUCCESS, payload: res.data });
@@ -137,7 +139,7 @@ export const FETCH_BILLS_SUCCESS = 'GET_BILL_SUCCESS';
 export const FETCH_BILLS_FAIL = 'GET_BILL_FAIL';
 
 export const getBills = () => dispatch => {
-  dispatch({ type: FETCH_BILLS_START });
+  dispatch ({ type: FETCH_BILLS_START });
   return axiosWithAuth()
     .get('/bills/bills')
     .then(res => {
@@ -159,8 +161,25 @@ export const endTrip = tripid => dispatch => {
       console.log(res);
       dispatch({ type: END_TRIP_SUCCESS });
     })
-    .catch(err => console.log(err));
-};
+    .catch(err => console.log(err))
+}
+
+export const ADD_BILL_START = 'ADD_BILL_START';
+export const ADD_BILL_SUCCESS = 'ADD_BILL_SUCCESS';
+export const ADD_BILL_FAIL = 'ADD_BILL_FAIL';
+
+export const addBill = (tripid, newBill) => dispatch => {
+  console.log(tripid, newBill)
+  const username = localStorage.getItem('username');
+  dispatch ({ type: ADD_BILL_START });
+  return axiosWithAuth()
+    .post(`bills/bill/${tripid}/${username}`, newBill)
+    .then(res => {
+      console.log(res)
+      dispatch({ type: ADD_BILL_SUCCESS })
+    })
+    .catch(err => console.log(err))
+}
 
 export const ADD_USER_TO_TRIP_START = 'ADD_USER_TO_TRIP_START';
 export const ADD_USER_TO_TRIP_SUCCESS = 'ADD_USER_TO_TRIP_SUCCESS';

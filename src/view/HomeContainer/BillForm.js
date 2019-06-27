@@ -1,0 +1,63 @@
+import React from 'react';
+
+
+class BillForm extends React.Component {
+    state ={
+        newBill: {
+            billTitle: 'meat',
+            billAmount: 10
+        }
+    }
+ 
+    handleChange = e => {
+        this.setState({
+            newBill: {
+                ...this.state.newBill,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+
+    addBill = (e, tripid) => {
+        e.preventDefault();
+        this.props.addBill(tripid, this.state.newBill)
+        .then(() => {
+            this.props.getBills()
+        })
+        this.setState({
+            newBill: {
+                billTitle: '',
+                billAmount: null,
+            }
+        })
+    }
+
+
+    render() {
+        return (
+            <div>
+                <form onSubmit={(e) => this.addBill(e, this.props.tripid)}>
+                    <input 
+                        type='text'
+                        name='bill'
+                        placeholder='bill'
+                        value={this.state.newBill.billTitle}
+                        onChange={this.handleChange}
+                    />  
+                    <input 
+                        type='number'
+                        name='bill amount'
+                        placeholder='amount'
+                        value={this.state.newBill.billAmount}
+                        onChange={this.handleChange}
+                    />
+                    <button>Add Bill</button>
+                </form>
+
+            </div>
+        )
+    }
+}
+
+
+export default BillForm; 

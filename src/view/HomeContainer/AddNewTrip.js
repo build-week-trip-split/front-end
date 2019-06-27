@@ -1,8 +1,6 @@
 import React from 'react';
 
 
-
-
 class AddNewTrip extends React.Component {
     state = {
         newTrip: {
@@ -18,6 +16,13 @@ class AddNewTrip extends React.Component {
         .then(() => {
             this.props.getTrips()
         })
+        this.setState({
+            newTrip: {
+                tripname: '',
+                startDate: '',
+                endDate: ''
+            }
+        })
     }
 
     handleChange = e => {
@@ -32,7 +37,7 @@ class AddNewTrip extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.addNewTrip}>
+                <form onSubmit={(e) => this.addNewTrip(e)}>
                     <input 
                         type='text'
                         name='tripname'
