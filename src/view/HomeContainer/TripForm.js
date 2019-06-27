@@ -1,67 +1,64 @@
 import React from "react";
 
-class AddNewTrip extends React.Component {
+class TripFrom extends React.Component {
   state = {
-    newTrip: {
+    updateTrip: {
       tripname: "",
       startDate: "",
       endDate: ""
     }
   };
 
-  addNewTrip = e => {
+  componentDidMount() {
+    this.props.getBills();
+  }
+  updateTrip = (e, updateTrip) => {
     e.preventDefault();
-    this.props.addNewTrip(this.state.newTrip).then(() => {
-      this.props.getTrips();
+    const tripid = localStorage.getItem("tripid");
+    this.props.updateTrip(tripid, updateTrip).then(() => {
+      this.props.history.push(`/users/${tripid}`);
     });
-    this.setState({
-      newTrip: {
-        tripname: "",
-        startDate: "",
-        endDate: ""
-      }
-    });
+    localStorage.removeItem("tripid");
   };
 
   handleChange = e => {
     this.setState({
-      newTrip: {
-        ...this.state.newTrip,
+      updateTrip: {
+        ...this.state.updateTrip,
         [e.target.name]: e.target.value
       }
     });
   };
-
   render() {
     return (
       <div>
-        <form onSubmit={e => this.addNewTrip(e)}>
+        <form onSubmit={e => this.updateTrip(e, this.state.updateTrip)}>
           <input
             type="text"
             name="tripname"
             placeholder="tripname"
-            value={this.state.newTrip.tripname}
+            value={this.state.updateTrip.tripname}
             onChange={this.handleChange}
           />
           <input
             type="date"
             name="startDate"
             placeholder="start date"
-            value={this.state.newTrip.startDate}
+            value={this.state.updateTrip.startDate}
             onChange={this.handleChange}
           />
           <input
             type="date"
             name="endDate"
             placeholder="end date"
-            value={this.state.newTrip.endDate}
+            value={this.state.updateTrip.endDate}
             onChange={this.handleChange}
           />
-          <button>Add</button>
+          <button>Update</button>
         </form>
       </div>
     );
   }
 }
 
-export default AddNewTrip;
+export default TripFrom;

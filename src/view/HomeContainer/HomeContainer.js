@@ -4,15 +4,8 @@ import { connect } from "react-redux";
 import CurrentTrip from "./CurrentTrip";
 import PastTrips from "./PastTrips";
 import AddNewTrip from "./AddNewTrip";
-import Navbar from "./Navbar";
 
-
-import {
-  getTrips,
-  addNewTrip,
-  fetchTrip,
-  getBills
-} from "../../actions";
+import { getTrips, addNewTrip, fetchTrip, getBills } from "../../actions";
 
 class HomeContainer extends React.Component {
   componentDidMount() {
@@ -46,7 +39,6 @@ class HomeContainer extends React.Component {
             addNewTrip={this.props.addNewTrip}
             getTrips={this.props.getTrips}
           />
-          <Navbar />
         </div>
       </div>
     );
