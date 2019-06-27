@@ -25,7 +25,10 @@ import {
     FETCH_BILLS_FAIL,
     ADD_BILL_START,
     ADD_BILL_SUCCESS,
-    ADD_BILL_FAIL
+    ADD_BILL_FAIL,
+    END_TRIP_SUCCESS,
+    ADD_USER_TO_TRIP_SUCCESS,
+    ADD_USER_TO_TRIP_START
 } from '../actions';
 
 const initialState = {
@@ -41,6 +44,7 @@ const initialState = {
     bills: [],
     creatingBill: false,
     fetchingBills: false,
+    addingUserToTrip: false,
     trip: null
 }
 
@@ -197,10 +201,24 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: 'Unable to add bill...'
             }
+        case END_TRIP_SUCCESS:
+            return {
+              ...state,
+              trip: { ...state.trip, completed: true }
+            };
+        case ADD_USER_TO_TRIP_START:
+          return {
+            ...state,
+            addingUserToTrip: true
+          };
+        case ADD_USER_TO_TRIP_SUCCESS:
+          return {
+            ...state,
+            addingUserToTrip: false
+          };
         default: 
             return state
     }
 }
 
 export default reducer;
-
