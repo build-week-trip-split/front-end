@@ -147,7 +147,6 @@ export const getBills = () => dispatch => {
     .catch(err => console.log(err));
 };
 
-// Might use this if an endpoint is created for it
 export const END_TRIP_START = 'END_TRIP_START';
 export const END_TRIP_SUCCESS = 'END_TRIP_SUCCESS';
 export const END_TRIP_FAIL = 'END_TRIP_FAIL';
@@ -159,6 +158,21 @@ export const endTrip = tripid => dispatch => {
     .then(res => {
       console.log(res);
       dispatch({ type: END_TRIP_SUCCESS });
+    })
+    .catch(err => console.log(err));
+};
+
+export const ADD_USER_TO_TRIP_START = 'ADD_USER_TO_TRIP_START';
+export const ADD_USER_TO_TRIP_SUCCESS = 'ADD_USER_TO_TRIP_SUCCESS';
+export const ADD_USER_TO_TRIP_FAIL = 'ADD_USER_TO_TRIP_FAIL';
+
+export const addUserToTrip = ( tripid, username ) => dispatch => {
+  dispatch({ type: ADD_USER_TO_TRIP_START });
+  return axiosWithAuth()
+    .post(`/trips/trip/adduser/${tripid}/${username}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: ADD_USER_TO_TRIP_SUCCESS });
     })
     .catch(err => console.log(err));
 };

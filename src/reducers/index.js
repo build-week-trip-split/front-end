@@ -23,7 +23,9 @@ import {
   FETCH_BILLS_START,
   FETCH_BILLS_SUCCESS,
   FETCH_BILLS_FAIL,
-  END_TRIP_SUCCESS
+  END_TRIP_SUCCESS,
+  ADD_USER_TO_TRIP_SUCCESS,
+  ADD_USER_TO_TRIP_START
 } from '../actions';
 
 const initialState = {
@@ -38,6 +40,7 @@ const initialState = {
   updatingTrip: false,
   bills: [],
   fetchingBills: false,
+  addingUserToTrip: false,
   trip: null
 };
 
@@ -181,6 +184,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         trip: { ...state.trip, completed: true }
+      };
+    case ADD_USER_TO_TRIP_START:
+      return {
+        ...state,
+        addingUserToTrip: true
+      };
+    case ADD_USER_TO_TRIP_SUCCESS:
+      return {
+        ...state,
+        addingUserToTrip: false
       };
     default:
       return state;

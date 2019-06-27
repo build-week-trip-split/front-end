@@ -1,27 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchTrip } from '../../actions';
+import { fetchTrip, addUserToTrip } from '../../actions';
 import EndTripButton from './EndTripButton';
 
 class Trip extends React.Component {
   constructor(props) {
     console.log(props);
     super();
-    this.state = {};
+    this.state = {
+      addUser: {
+        username: ''
+      }
+    };
   }
   componentDidMount() {
     const id = this.props.match.params.tripid;
     this.props.fetchTrip(id);
   }
 
+  handleChange = e => {
+    this.setState({
+      addUser: {
+        ...this.state.addUser,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
   render() {
     const { trip } = this.props;
-    if (this.props.fetchingTrip) {
-      return <div>Loading...</div>;
-    }
 
     if (!trip) {
-      return <div>Empty Trip...</div>;
+      return <div>Loading...</div>;
     }
 
     return (
@@ -40,6 +50,27 @@ class Trip extends React.Component {
             .map(b => [b.billTitle, b.billAmount].join(': '))
             .join(',')}
         </div>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            this.setState({ ...this.state, addUser: { username: '' } });
+            this.props
+              .addUserToTrip(trip.tripid, this.state.addUser.username)
+              .then(() => {
+                this.props.fetchTrip(trip.tripid);
+              });
+          }}
+        >
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            value={this.state.addUser.username}
+            onChange={this.handleChange}
+            autoComplete="off"
+          />
+          <button type="submit">Add User</button>
+        </form>
         <EndTripButton trip={trip} />
       </div>
     );
@@ -48,11 +79,12 @@ class Trip extends React.Component {
 
 const maptStateToProps = state => ({
   trip: state.trip,
-  fetchingTrip: state.fetchingTrip
+  fetchingTrip: state.fetchingTrip,
+  addingUserToTrip: state.addingUserToTrip
 });
 
 export default connect(
   maptStateToProps,
-  { fetchTrip }
+  { fetchTrip, addUserToTrip }
 )(Trip);
 
