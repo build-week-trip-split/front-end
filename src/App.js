@@ -13,7 +13,6 @@ import SignUp from './view/SignUp';
 import HomeContainer from './view/HomeContainer/HomeContainer';
 import PrivateRoute from './view/PrivateRoute';
 
-
 class App extends React.Component {
   render() {
     return (

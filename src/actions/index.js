@@ -112,7 +112,7 @@ export const deleteTrip = tripid => dispatch => {
     .then(res => {
       console.log(res);
       dispatch({ type: DELETE_TRIP_SUCCESS, payload: tripid });
-      
+
     })
     .catch(err => console.log(err));
 };
@@ -126,13 +126,13 @@ export const updateTrip = (tripid, updateTrip ) => dispatch => {
   dispatch({ type: UPDATE_TRIP_START });
   return axiosWithAuth()
     .put(`/trips/trip/${tripid}`, updateTrip)
+
     .then(res => {
       console.log(res);
       dispatch({ type: UPDATE_TRIP_SUCCESS, payload: res.data });
     })
-    .catch(err => console.log(err))
-}
-
+    .catch(err => console.log(err));
+};
 
 export const FETCH_BILLS_START = 'GET_BILL_START';
 export const FETCH_BILLS_SUCCESS = 'GET_BILL_SUCCESS';
@@ -144,7 +144,22 @@ export const getBills = () => dispatch => {
     .get('/bills/bills')
     .then(res => {
       console.log(res);
-      dispatch ({ type: FETCH_BILLS_SUCCESS })
+      dispatch({ type: FETCH_BILLS_SUCCESS });
+    })
+    .catch(err => console.log(err));
+};
+
+export const END_TRIP_START = 'END_TRIP_START';
+export const END_TRIP_SUCCESS = 'END_TRIP_SUCCESS';
+export const END_TRIP_FAIL = 'END_TRIP_FAIL';
+
+export const endTrip = tripid => dispatch => {
+  dispatch({ type: END_TRIP_START });
+  return axiosWithAuth()
+    .put(`/trips/trip/completed/${tripid}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: END_TRIP_SUCCESS });
     })
     .catch(err => console.log(err))
 }
@@ -165,3 +180,18 @@ export const addBill = (tripid, newBill) => dispatch => {
     })
     .catch(err => console.log(err))
 }
+
+export const ADD_USER_TO_TRIP_START = 'ADD_USER_TO_TRIP_START';
+export const ADD_USER_TO_TRIP_SUCCESS = 'ADD_USER_TO_TRIP_SUCCESS';
+export const ADD_USER_TO_TRIP_FAIL = 'ADD_USER_TO_TRIP_FAIL';
+
+export const addUserToTrip = ( tripid, username ) => dispatch => {
+  dispatch({ type: ADD_USER_TO_TRIP_START });
+  return axiosWithAuth()
+    .post(`/trips/trip/adduser/${tripid}/${username}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: ADD_USER_TO_TRIP_SUCCESS });
+    })
+    .catch(err => console.log(err));
+};
