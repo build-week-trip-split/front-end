@@ -101,20 +101,20 @@ class Trip extends React.Component {
 
     return (
       <div>
-        <div>tripid: {trip.tripid}</div>
-        <div>completed: {trip.completed ? "True" : "False"}</div>
-        <div>endDate: {trip.endDate}</div>
-        <div>startDate: {trip.startDate}</div>
-        <div>endDate: {trip.endDate}</div>
-        <div>madeByWhom: {trip.madeByWhom}</div>
-        <div>tripname: {trip.tripname}</div>
+        <div><p>tripid: {trip.tripid}</p></div>
+        <div><p>completed: {trip.completed ? "True" : "False"}</p></div>
+        <div><p>endDate: {trip.endDate}</p></div>
+        <div><p>startDate: {trip.startDate}</p></div>
+        <div><p>endDate: {trip.endDate}</p></div>
+        <div><p>madeByWhom: {trip.madeByWhom}</p></div>
+        <div><p>tripname: {trip.tripname}</p></div>
         {/* <div>users: {trip.users.map(u => u.username)}</div> */}
         <div>
-          users:{" "}
+          <p>users:</p>
           {trip.users.map(u => {
             return (
               <div key={u.userid}>
-                <small>{u.username}</small>
+                <p>{u.username}</p>
                 <button
                   onClick={() =>
                     this.props.deleteUser(u.userid).then(() => {
@@ -129,13 +129,12 @@ class Trip extends React.Component {
           })}
         </div>
         <div>
-          bills:{" "}
+          <p>bills:</p>
           {trip.bills.map(bill => {
-            console.log(bill);
             return (
               <div key={bill.billid}>
-                <small>{bill.billTitle}</small>
-                <small>{bill.billAmount}</small>
+                <p>{bill.billTitle}</p>
+                <p>{bill.billAmount}</p>
                 <button onClick={() => this.deleteBill(bill.billid)}>x</button>
               </div>
             );
@@ -146,8 +145,8 @@ class Trip extends React.Component {
             .join(",")
             } */}
         </div>
-        <div>Trip Total: {tripTotal}</div>
-        <div>Owed Per User: {totalPerUser}</div>
+        <div><p>Trip Total: {tripTotal}</p></div>
+        <div><p>Owed Per User: {totalPerUser}</p></div>
 
         <button onClick={this.pushToTripForm}>Edit Trip</button>
 

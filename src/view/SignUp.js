@@ -6,9 +6,7 @@ class SignUp extends React.Component {
   state = {
     addNewUser: {
       username: "",
-      password: "",
-      email: "",
-      phone_number: ""
+      password: ""
     }
   };
 

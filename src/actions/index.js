@@ -36,7 +36,7 @@ export const addNewUser = newUser => dispatch => {
   console.log(newUser);
   dispatch({ type: SIGN_UP_START });
   return axios
-    .post("/createnewuser", newUser)
+    .post("https://trip-split-buildweek.herokuapp.com/createnewuser", newUser)
     .then(res => {
       console.log(res);
       dispatch({ type: SIGN_UP_SUCCESS });
