@@ -16,7 +16,7 @@ const EndTripButton = ({ trip, endTrip, onComplete, history }) => {
         });
       }}
     >
-      EndTripButton
+      End Trip
     </button>
   );
 };
