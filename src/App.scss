@@ -6,7 +6,7 @@
   background-color: #eee;
 }
 .App {
-   width: 100%;
+  width: 100%;
   max-width: 500px;
   // max-height: 800px;
   display: flex;
@@ -15,7 +15,7 @@
   align-items: center;
   margin: auto;
   font-family: 'Ubuntu', sans-serif;
-  padding-bottom: 3rem;
+  padding: 2rem;
   background: #9858db;
   box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -140,7 +140,8 @@
 
 .trip-bill-container {
   background: white;
-  width: 120%;
+  width: 100%;
+  border-radius: 5px;
 }
 .trips {
   margin-top: 10px;
@@ -366,6 +367,9 @@ form {
 }
 
 .footer {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
   margin-top: 30px;
   // margin-left: 40px;
   small {
@@ -374,7 +378,6 @@ form {
 }
 
 .footer-trip {
-  margin-left: 220px;
   margin-bottom: 20px;
 }
 
