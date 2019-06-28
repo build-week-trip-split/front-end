@@ -6,8 +6,8 @@
     align-items: center;
     margin: auto;
     font-family: "Ubuntu", sans-serif;
-    background: #9858DB;
     padding-bottom: 3rem;
+    background: #9858DB;
 }
 
 
@@ -70,12 +70,13 @@
 
 }
 
-.navbar {
+.navbarOut {
     display: flex;
     justify-content: space-around;
-    margin-top: 4rem;
+    margin-top: .25rem;
+    margin-bottom: 3rem; 
     width: 80%;
-    margin-top: 3rem;
+
     filter: drop-shadow(.3rem .3rem .4rem #341E4C);
 
     p {
@@ -96,10 +97,18 @@
     }
 }
 
+.navbarIn {
+    
+    a {
+        color: white; 
+    }
+}
+
 .user-profile {
     display: flex;
     flex-direction: column;
     text-align: center;
+    background: white;
 
     .name {
         margin-top: 30px;
@@ -122,15 +131,12 @@
     .logout-button {
         margin-top: 50px;
     }
-
-    footer {
-        margin-top: 10px;
-        small{
-            margin-right: 10px;
-        }
-    }
 }
 
+.trip-bill-container {
+    background: white; 
+    width: 120%; 
+}
 .trips {
     margin-top: 10px;
     border-radius: 10px;
@@ -302,3 +308,100 @@
     }
 }
 
+.signup-container {
+    margin-top: 2rem; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+
+    h2 {
+        color: white; 
+        margin-bottom: 20px; 
+    }
+
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+
+        input {
+            width: 100%; 
+        }
+    }
+
+    .login-button {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        background-color: white;
+        border-radius: 100rem;
+        width: 120px;
+        height: 35px;
+        filter: drop-shadow(.3rem .3rem .4rem #341E4C);
+
+        p {
+            color: #341E4C;
+            border-radius: 50rem;
+            font-weight: 600;
+            font-size: 1.25rem; 
+        }
+    }
+
+    .signup-button {
+        width: 120px;
+        height: 35px;
+        border-radius: 100rem;
+        font-weight: 600;
+        margin-right: 20px; 
+        filter: drop-shadow(.3rem .3rem .4rem #341E4C);
+
+        p {
+            margin-right: 5px;
+            color: white;
+            font-size: 1.25rem; 
+        }
+    }
+
+    .signup-buttons {
+        display: flex; 
+    }
+}
+
+.footer {
+    margin-top: 30px;
+    // margin-left: 40px; 
+    small{
+        margin-right: 10px;
+    }
+}
+
+.footer-trip {
+    margin-left: 220px; 
+    margin-bottom: 20px; 
+}
+
+.logout-button {
+    margin-top: 10px; 
+    margin-left: 260px; 
+}
+
+.trip-form-container {
+    text-align: center; 
+        h2 {
+        color: white; 
+        margin-top: 50px; 
+        margin-bottom: 30px; 
+    }
+    form {
+        .update-trip-button {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            background-color: white;
+            width: 80px;
+            height: 30px;
+            border-radius: 10px;
+            color: #341E4C;
+            margin-right: 5px;
+    
+        }
+    }
+}

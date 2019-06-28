@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 const NavbarOut = () => {
   return (
-    <div className='navbar'>
+    <div className='navbarOut'>
       <p>
-        <Link to="/">Sign In</Link>
+        <Link to="/">Log In</Link>
       </p>
       <p>
         <Link to="/signup">Sign Up</Link>

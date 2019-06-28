@@ -32,43 +32,55 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={e => this.addNewUser(e)}>
-          <input
-            type="text"
-            name="username"
-            placeholder="username"
-            value={this.state.addNewUser.username}
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            value={this.state.addNewUser.password}
-            onChange={this.handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="email"
-            placeholder="email"
-            value={this.state.addNewUser.email}
-            onChange={this.handleChange}
-          />
-          <input
-            type="tel"
-            name="phone_number"
-            placeholder="phone number"
-            value={this.state.addNewUser.phone_number}
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            onChange={this.handleChange}
-          />
-          <small>Format: 123-456-7890</small>
-          <button>Sign Up</button>
-          <button>Log In</button>
-        </form>
+      <div className='signup-container'>
+        <h2>Sign Up!</h2>
+          <form onSubmit={e => this.addNewUser(e)}>
+            <div className='input-container'>
+              <div className='input'>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  value={this.state.addNewUser.username}
+                  onChange={this.handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  value={this.state.addNewUser.password}
+                  onChange={this.handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="email"
+                  value={this.state.addNewUser.email}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div>
+                <input
+                  type="tel"
+                  name="phone_number"
+                  placeholder="phone number"
+                  value={this.state.addNewUser.phone_number}
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className='signup-buttons'>
+              <button className='signup-button bg-gray-600 flex-shrink-0 hover:border-white-700 text-md py-2 px-4 rounded'>Sign Up</button>
+              <button onClick={this.pushToLoginForm}className='login-button flex-shrink-0 hover:border-white-700 text-md py-2 px-4 rounded'><p>Log In</p></button>
+            </div>
+          </form>
       </div>
     );
   }

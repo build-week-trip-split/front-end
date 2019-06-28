@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const NavbarIn = () => {
   return (
     <div>
-      <p>
+      <p className='navbarIn'>
         <Link to="/users">Home</Link>
       </p>
     </div>
