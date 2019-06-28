@@ -2,6 +2,7 @@ import React from "react";
 
 import { connect } from "react-redux";
 import { logIn } from "../actions";
+import NavbarOut from "../NavbarOut";
 
 class Login extends React.Component {
   state = {
@@ -33,7 +34,8 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className='login-conatiner'>
+      <div className='login-container'>
+        <NavbarOut />
           <img src='assets/logo.png' alt='' />
           <h4>hassle-free tab splitting</h4>
           <form onSubmit={this.logIn}>

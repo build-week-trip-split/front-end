@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
 
 import CurrentTrip from "./CurrentTrip";
 import PastTrips from "./PastTrips";
 import AddNewTrip from "./AddNewTrip";
 import Name from './Name';
+import Footer from '../Footer';
 
 import { getTrips, addNewTrip, fetchTrip, getBills } from "../../actions";
 
@@ -45,18 +45,8 @@ class HomeContainer extends React.Component {
               getTrips={this.props.getTrips}
             />
         </div>
-        <button className='logout-button'onClick={this.logout}>Log Out</button>
-        <footer>
-            <small>
-              <Link to="/users">Home</Link>
-            </small>
-            <small>
-              <Link to="/">Sign In</Link>
-            </small> 
-            <small>
-              <Link to="/signup">Sign Up</Link>
-            </small>
-        </footer>
+        <button className='logout'onClick={this.logout}>Log Out</button>
+        <Footer  />
       </div>
     );
   }

@@ -58,10 +58,10 @@
 
 .navbar {
     display: flex; 
-    margin-top: 10px; 
-
+    margin-top:30px; 
+    justify-content: center; 
     p {
-        margin-right: 10px;
+        margin-right: 15px;
         
         :hover {
             text-decoration: underline; 
@@ -92,16 +92,6 @@
         display: flex; 
     }
     
-    .logout-button {
-        margin-top: 50px; 
-    }
-    
-    footer {
-        margin-top: 10px; 
-        small{
-            margin-right: 10px; 
-        }
-    }
 }
 
 .trips {
@@ -272,5 +262,23 @@
     }
     .gray {
         background-color: gray;
+    }
+}
+
+.logout {
+    margin-top: 45px; 
+}
+
+.logout-button {
+    margin-top: 45px; 
+    margin-left: 160px; 
+}
+
+.footer {
+    margin-top: 25px; 
+    display: flex; 
+    justify-content: center; 
+    small{
+        margin-right: 10px; 
     }
 }

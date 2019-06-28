@@ -200,7 +200,8 @@ const reducer = (state = initialState, action) => {
     case ADD_BILL_SUCCESS:
       return {
         ...state,
-        creatingBill: false
+        creatingBill: false,
+        bills:[...state.bills, action.payload]
       };
     case ADD_BILL_FAIL:
       return {
@@ -248,14 +249,14 @@ const reducer = (state = initialState, action) => {
     case DELETE_USER_START:
       return {
         ...state,
-        deletingBill: true
+        deletingUser: true
       };
     case DELETE_USER_SUCCESS:
       return {
         ...state,
-        deletingBill: false,
-        bills: state.users.filter(user => {
-          if (action.payload === user.userid) {
+        deletingUser: false,
+        users: state.users.filter(user => {
+          if (action.payload === user.username) {
             return false;
           } else {
             return true;

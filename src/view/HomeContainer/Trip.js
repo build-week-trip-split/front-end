@@ -13,6 +13,7 @@ import {
 
 import BillForm from "../HomeContainer/BillForm";
 import EndTripButton from "./EndTripButton";
+import Footer from '../Footer';
 
 class Trip extends React.Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class Trip extends React.Component {
   addBill = (e, tripid) => {
     e.preventDefault();
     this.props.addBill(tripid, this.state.newBill).then(() => {
+      console.log('inside of add bill in trip.js')
       this.props.fetchTrip(this.props.trip.tripid);
     });
     this.setState({
@@ -57,6 +59,7 @@ class Trip extends React.Component {
 
   deleteBill = billid => {
     this.props.deleteBill(billid).then(() => {
+      console.log('deletellllll')
       this.props.fetchTrip(this.props.trip.tripid);
     });
   };
@@ -79,6 +82,13 @@ class Trip extends React.Component {
   pushToTripForm = () => {
     this.props.history.push(`/users/${this.props.trip.tripid}/trip`);
     localStorage.setItem("tripid", this.props.trip.tripid);
+  };
+  
+  logout = e => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    this.props.history.push("/");
   };
 
   render() {
@@ -119,7 +129,7 @@ class Trip extends React.Component {
                     <p>{u.username}</p>
                     <button
                       onClick={() =>
-                        this.props.deleteUser(u.userid).then(() => {
+                        this.props.deleteUser(trip.tripid, u.username).then(() => {
                           this.props.fetchTrip(trip.tripid);
                         })
                       }
@@ -182,6 +192,8 @@ class Trip extends React.Component {
             <button onClick={this.pushToTripForm}className='button'>Edit Trip</button>
           </div>
         </div>
+        <button className='logout-button'onClick={this.logout}>Log Out</button>
+        <Footer />
       </div>
     );
   }
@@ -189,8 +201,7 @@ class Trip extends React.Component {
 
 const maptStateToProps = state => ({
   trip: state.trip,
-  users: state.trip,
-  fetchingTrip: state.fetchingTrip,
+  users: state.trip,  fetchingTrip: state.fetchingTrip,
   addingUserToTrip: state.addingUserToTrip
 });
 
