@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import {
   fetchTrip,
   deleteTrip,
@@ -13,7 +14,6 @@ import {
 
 import BillForm from "../HomeContainer/BillForm";
 import EndTripButton from "./EndTripButton";
-import Footer from '../Footer';
 
 class Trip extends React.Component {
   constructor(props) {
@@ -110,7 +110,7 @@ class Trip extends React.Component {
       trip.users.length > 0 ? tripTotal / trip.users.length : 0;
 
     return (
-      <div>
+      <div className='trip-bill-container'>
         {/* <div><p>tripid: {trip.tripid}</p></div> */}
         {/* <div><p>completed: {trip.completed ? "True" : "False"}</p></div> */}
         <div className='trip-container'>
@@ -194,7 +194,19 @@ class Trip extends React.Component {
           </div>
         </div>
         <button className='logout-button'onClick={this.logout}>Log Out</button>
-        <Footer />
+        <div className='footer footer-trip'>
+          <footer>
+              <small>
+              <Link to="/users">Home</Link>
+              </small>
+              <small>
+              <Link to="/">Sign In</Link>
+              </small>
+              <small>
+              <Link to="/signup">Sign Up</Link>
+              </small>
+          </footer>
+      </div>
       </div>
     );
   }

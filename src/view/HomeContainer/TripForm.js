@@ -31,7 +31,8 @@ class TripFrom extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div className='trip-form-container'>
+        <h2>Edit Trip</h2>
         <form onSubmit={e => this.updateTrip(e, this.state.updateTrip)}>
           <input
             type="text"
@@ -54,7 +55,7 @@ class TripFrom extends React.Component {
             value={this.state.updateTrip.endDate}
             onChange={this.handleChange}
           />
-          <button>Update</button>
+          <button className='update-trip-button'>Update</button>
         </form>
       </div>
     );
