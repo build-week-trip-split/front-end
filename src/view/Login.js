@@ -42,7 +42,7 @@ class Login extends React.Component {
             <div className='login-form'>
               <div>
                 <input
-                  className='login-input appearance-none bg-transparent border-none w-full text-gray-700 py-5 px-8 leading-tight focus:outline-none'
+                  className='login-input appearance-none bg-white border-none w-full text-gray-700 py-5 px-8 leading-tight focus:outline-none'
                   type="text"
                   name="username"
                   placeholder="username"
@@ -52,7 +52,7 @@ class Login extends React.Component {
               </div>
               <div>
                 <input
-                  className='login-input appearance-none bg-transparent border-none w-full text-gray-700 py-5 px-8 leading-tight focus:outline-none'
+                  className='login-input appearance-none bg-white border-none w-full text-gray-700 py-5 px-8 leading-tight focus:outline-none'
                   type="password"
                   name="password"
                   placeholder="password"

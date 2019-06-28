@@ -4,6 +4,10 @@
     display: flex;
     flex-direction: column; 
     align-items: center;
+    margin: auto; 
+    font-family: "Ubuntu", sans-serif;
+    background: #9858DB; 
+    padding-bottom: 3rem; 
 }
 
 
@@ -15,16 +19,20 @@
     margin-top: 75px;
     
     h4 {
-        margin-bottom: 50px; 
+        margin: 2.5rem 0;
+        color: white; 
+        font-size: 3rem; 
+        filter: drop-shadow(.3rem .3rem .4rem #341E4C); 
     }
 
     img {
         margin-bottom: 20px;
-        width: 175px; 
+        width: 175px;
+        filter: drop-shadow(.3rem .3rem .4rem #341E4C);
          
     }
 
-    form{
+    form {
         
         input {
             width: 175px; 
@@ -33,13 +41,16 @@
         .login-button {
             margin-top: 20px;
             margin-bottom: 10px;  
-            background-color: #9858DB;
+            background-color: white;
+            border-radius: 100rem; 
             width: 125px;
             height: 40px; 
-            border-radius: 10px; 
+            filter: drop-shadow(.3rem .3rem .4rem #341E4C);  
             
             p {
-                color: white
+                color: #341E4C; 
+                border-radius: 50rem; 
+                font-weight: 600;  
             }
         }
 
@@ -47,10 +58,13 @@
     .signup-button {
         width: 125px;
         height: 40px; 
-        border-radius: 10px; 
+        border-radius: 100rem;
+        font-weight: 600;  
+        filter: drop-shadow(.3rem .3rem .4rem #341E4C); 
+       
         p {
             margin-right: 5px;
-            color: white;  
+            color: white;   
         }
     }
 
@@ -58,14 +72,29 @@
 
 .navbar {
     display: flex; 
-    margin-top:30px; 
-    justify-content: center; 
-    p {
         margin-right: 15px;
+    justify-content: space-around; 
+    margin-top: 4rem;
+    width: 80%; 
+    margin-top: 3rem; 
+    filter: drop-shadow(.3rem .3rem .4rem #341E4C); 
+
+    p {
+
         
         :hover {
             text-decoration: underline; 
         }
+
+        a {
+            background: white; 
+            color: #341E4C; 
+            font-weight: 600; 
+            border: 2px solid white; 
+            padding: .7rem 2rem; 
+            border-radius: 50rem;  
+        }
+    
     }
 }
 

@@ -163,6 +163,7 @@ class Trip extends React.Component {
             addBill={this.props.addBill}
             tripid={trip.tripid}
             getBills={this.props.getBills}
+            onComplete={() => this.props.fetchTrip(trip.tripid)}
           />
 
           <form className='form'
