@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   fetchTrip,
@@ -10,10 +10,10 @@ import {
   addUserToTrip,
   deleteBill,
   deleteUser
-} from "../../actions";
+} from '../../actions';
 
-import BillForm from "../HomeContainer/BillForm";
-import EndTripButton from "./EndTripButton";
+import BillForm from '../HomeContainer/BillForm';
+import EndTripButton from './EndTripButton';
 
 class Trip extends React.Component {
   constructor(props) {
@@ -21,11 +21,11 @@ class Trip extends React.Component {
     super();
     this.state = {
       newBill: {
-        billTitle: "",
-        billAmount: ""
+        billTitle: '',
+        billAmount: ''
       },
       addUser: {
-        username: ""
+        username: ''
       }
     };
   }
@@ -46,20 +46,20 @@ class Trip extends React.Component {
   addBill = (e, tripid) => {
     e.preventDefault();
     this.props.addBill(tripid, this.state.newBill).then(() => {
-      console.log('inside of add bill in trip.js')
+      console.log('inside of add bill in trip.js');
       this.props.fetchTrip(this.props.trip.tripid);
     });
     this.setState({
       newBill: {
-        billTitle: "",
-        billAmount: ""
+        billTitle: '',
+        billAmount: ''
       }
     });
   };
 
   deleteBill = billid => {
     this.props.deleteBill(billid).then(() => {
-      console.log('deletellllll')
+      console.log('deletellllll');
       this.props.fetchTrip(this.props.trip.tripid);
     });
   };
@@ -75,20 +75,20 @@ class Trip extends React.Component {
 
   deleteTrip = tripid => {
     this.props.deleteTrip(tripid).then(() => {
-      this.props.history.push("/users");
+      this.props.history.push('/users');
     });
   };
 
   pushToTripForm = () => {
     this.props.history.push(`/users/${this.props.trip.tripid}/trip`);
-    localStorage.setItem("tripid", this.props.trip.tripid);
+    localStorage.setItem('tripid', this.props.trip.tripid);
   };
-  
+
   logout = e => {
     e.preventDefault();
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    this.props.history.push("/");
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    this.props.history.push('/');
   };
 
   render() {
@@ -110,10 +110,10 @@ class Trip extends React.Component {
       trip.users.length > 0 ? tripTotal / trip.users.length : 0;
 
     return (
-      <div className='trip-bill-container'>
+      <div className="trip-bill-container">
         {/* <div><p>tripid: {trip.tripid}</p></div> */}
         {/* <div><p>completed: {trip.completed ? "True" : "False"}</p></div> */}
-        <div className='trip-container'>
+        <div className="trip-container">
           <h3>{trip.tripname}</h3>
           <p>Start Date: {trip.startDate}</p>
           <p>End Date: {trip.endDate}</p>
@@ -121,31 +121,33 @@ class Trip extends React.Component {
           <p>Owed Per User: {totalPerUser}</p>
           {/* <div><p>madeByWhom: {trip.madeByWhom}</p></div> */}
           {/* <div>users: {trip.users.map(u => u.username)}</div> */}
-            <div className='users-container'>
-              <p>Friends:</p>
-              {trip.users.map(u => {
-                return (
-                  <div key={u.userid} className='user'>
-                    <p>{u.username}</p>
-                    <button
-                      onClick={() =>
-                        this.props.deleteUser(trip.tripid, u.username).then(() => {
+          <div className="users-container">
+            <p>Friends:</p>
+            {trip.users.map(u => {
+              return (
+                <div key={u.userid} className="user">
+                  <p>{u.username}</p>
+                  <button
+                    onClick={() =>
+                      this.props
+                        .deleteUser(trip.tripid, u.username)
+                        .then(() => {
                           this.props.fetchTrip(trip.tripid);
                         })
-                      }
-                    >
-                      x
-                    </button>
-                  </div>
+                    }
+                  >
+                    x
+                  </button>
+                </div>
               );
             })}
-            </div>
+          </div>
         </div>
-        <div className='bill-container'>
+        <div className="bill-container">
           <p>Bills:</p>
           {trip.bills.map(bill => {
             return (
-              <div key={bill.billid} className='bill'>
+              <div key={bill.billid} className="bill">
                 <p>{bill.billTitle}</p>
                 <p>: ${bill.billAmount}</p>
                 <button onClick={() => this.deleteBill(bill.billid)}>x</button>
@@ -158,7 +160,7 @@ class Trip extends React.Component {
             .join(",")
             } */}
         </div>
-        <div className='bottom-container'>
+        <div className="bottom-container">
           <BillForm
             addBill={this.props.addBill}
             tripid={trip.tripid}
@@ -166,10 +168,11 @@ class Trip extends React.Component {
             onComplete={() => this.props.fetchTrip(trip.tripid)}
           />
 
-          <form className='form'
+          <form
+            className="form"
             onSubmit={e => {
               e.preventDefault();
-              this.setState({ addUser: { username: "" } });
+              this.setState({ addUser: { username: '' } });
               this.props
                 .addUserToTrip(trip.tripid, this.state.addUser.username)
                 .then(() => {
@@ -187,26 +190,37 @@ class Trip extends React.Component {
             />
             <button type="submit">Add Friend</button>
           </form>
-          <div className='button-container'>
-            <button onClick={() => this.deleteTrip(trip.tripid)}className='button red'>Delete</button>
+          <div className="button-container">
+            <button
+              onClick={() => this.deleteTrip(trip.tripid)}
+              className="button red"
+            >
+              Delete
+            </button>
             <EndTripButton trip={trip} history={this.props.history} />
-            <button onClick={this.pushToTripForm}className='button'>Edit Trip</button>
+            <button onClick={this.pushToTripForm} className="button">
+              Edit Trip
+            </button>
           </div>
         </div>
-        <button className='logout-button'onClick={this.logout}>Log Out</button>
-        <div className='footer footer-trip'>
+        <div className="logout-wrapper">
+          <button className="logout-button" onClick={this.logout}>
+            Log Out
+          </button>
+        </div>
+        <div className="footer footer-trip">
           <footer>
-              <small>
+            <small>
               <Link to="/users">Home</Link>
-              </small>
-              <small>
+            </small>
+            <small>
               <Link to="/">Sign In</Link>
-              </small>
-              <small>
+            </small>
+            <small>
               <Link to="/signup">Sign Up</Link>
-              </small>
+            </small>
           </footer>
-      </div>
+        </div>
       </div>
     );
   }
@@ -214,7 +228,8 @@ class Trip extends React.Component {
 
 const maptStateToProps = state => ({
   trip: state.trip,
-  users: state.trip,  fetchingTrip: state.fetchingTrip,
+  users: state.trip,
+  fetchingTrip: state.fetchingTrip,
   addingUserToTrip: state.addingUserToTrip
 });
 

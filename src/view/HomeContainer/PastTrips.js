@@ -1,21 +1,27 @@
-import React from "react";
+import React from 'react';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const PastTrip = props => {
   console.log(props);
-  const PastTrips = props.trips.map(trip => {
-    return (
-      <div key={trip.tripid} className='trips past'>
-        {trip.completed ? (
+  const PastTrips = props.trips
+    .filter(trip => trip.completed)
+    .map(trip => {
+      return (
+        <div key={trip.tripid} className="trips past">
           <Link to={`/users/${trip.tripid}`}>
             <p>{trip.tripname}</p>
-            <small>{trip.startDate} - {trip.endDate}</small>
+            <small>
+              {trip.startDate} - {trip.endDate}
+            </small>
           </Link>
-        ) : null}
-      </div>
-    );
-  });
+        </div>
+      );
+    });
+
+  if(PastTrips.length === 0) {
+    return null
+  }
 
   return (
     <div>
@@ -26,3 +32,4 @@ const PastTrip = props => {
 };
 
 export default PastTrip;
+
