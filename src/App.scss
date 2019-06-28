@@ -72,6 +72,7 @@
 
 .navbar {
     display: flex; 
+        margin-right: 15px;
     justify-content: space-around; 
     margin-top: 4rem;
     width: 80%; 
@@ -79,6 +80,7 @@
     filter: drop-shadow(.3rem .3rem .4rem #341E4C); 
 
     p {
+
         
         :hover {
             text-decoration: underline; 
@@ -119,16 +121,6 @@
         display: flex; 
     }
     
-    .logout-button {
-        margin-top: 50px; 
-    }
-    
-    footer {
-        margin-top: 10px; 
-        small{
-            margin-right: 10px; 
-        }
-    }
 }
 
 .trips {
@@ -299,5 +291,23 @@
     }
     .gray {
         background-color: gray;
+    }
+}
+
+.logout {
+    margin-top: 45px; 
+}
+
+.logout-button {
+    margin-top: 45px; 
+    margin-left: 160px; 
+}
+
+.footer {
+    margin-top: 25px; 
+    display: flex; 
+    justify-content: center; 
+    small{
+        margin-right: 10px; 
     }
 }
