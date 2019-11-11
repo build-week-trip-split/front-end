@@ -1,44 +1,23 @@
 import React from "react";
-import "./App.scss";
-
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import styled from "styled-components";
+import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { addBill, getBills, updateTrip } from "./actions";
+import SignUp from "./views/SignUp";
+import Login from "./views/Login";
+import HomePage from "./views/HomePage";
 
-import Trip from "./view/HomeContainer/Trip";
-import TripForm from "./view/HomeContainer/TripForm";
-import Login from "./view/Login";
-import SignUp from "./view/SignUp";
-import HomeContainer from "./view/HomeContainer/HomeContainer";
-import PrivateRoute from "./view/PrivateRoute";
-import NavbarIn from "./NavbarIn";
+import { addBill, getBills, updateTrip } from "./actions";
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <Router>
-          {/* <Route path='/users' component={NavbarIn} /> */}
-          <Route exact path="/" component={Login} />
+      <StyledDiv>
+        <Switch>
+          <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
-          <Route
-            exact
-            path="/users/:tripid"
-            render={props => <Trip {...props} />}
-          />
-          <Route
-            path="/users/:tripid/trip"
-            render={props => (
-              <TripForm
-                {...props}
-                updateTrip={this.props.updateTrip}
-                getBills={this.props.getBills}
-              />
-            )}
-          />
-          <PrivateRoute exact path="/users" component={HomeContainer} />
-        </Router>
-      </div>
+          <Route path="/user" component={HomePage} />
+        </Switch>
+      </StyledDiv>
     );
   }
 }
@@ -58,3 +37,47 @@ export default connect(
   maptStateToProps,
   { addBill, updateTrip, getBills }
 )(App);
+
+const StyledDiv = styled.div`
+  width: 800px;
+  border: 1px black solid;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  background: #9858db;
+  padding: 1.5rem;
+
+  .logo {
+    width: 175px;
+    margin: 0 auto 20px;
+  }
+  .sub-title {
+    margin: 20px;
+    color: white;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: 0 auto;
+
+    .input {
+      margin: 10px auto 10px auto;
+      padding: 10px;
+      width: 50%;
+    }
+    .error {
+      margin: 0 auto;
+      color: red;
+      font-size: 14px;
+    }
+    .button {
+      padding: 5px;
+      background: white;
+      width: 20%;
+      margin: 0 auto;
+    }
+    .message {
+    }
+  }
+`;
